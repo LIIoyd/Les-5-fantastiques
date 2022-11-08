@@ -25,7 +25,7 @@ final class user{
     #[Column(type: 'string', nullable: false)]
     private string $description;
 
-    public function __construct($idPicture,$title,$height,$width,$description)
+    public function __construct($title,$height,$width,$description)
     {
         $this->title = $title;
         $this->height = $height; 
