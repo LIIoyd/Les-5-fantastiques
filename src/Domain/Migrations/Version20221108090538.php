@@ -28,10 +28,13 @@ final class Version20221108090538 extends AbstractMigration
 
         $this->addSql('CREATE TABLE gallery (
             id_gallery INT AUTO_INCREMENT NOT NULL, 
-            name_gallery VARCHAR(255) NOT NULL, 
+            name_gallery VARCHAR(255) NOT NULL,
+            date_creat DATE, 
             acces_type VARCHAR(255) NOT NULL,
             description_gallery VARCHAR(255) DEFAULT NULL,
-            PRIMARY KEY(id_gallery))'
+            id_creator INT NOT NULL,
+            PRIMARY KEY(id_gallery),
+            FOREIGN KEY (id_creator) REFERENCES user(id_user))'
             );
 
         $this->addSql('CREATE TABLE picture (
