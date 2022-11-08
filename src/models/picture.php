@@ -16,27 +16,46 @@ final class user{
     #[Column(type: 'string', nullable: false)]
     private int $title;
 
+    #[Column(type: 'integer', nullable: false)]
+    private string $height;
+
+    #[Column(type: 'integer', nullable: false)]
+    private string $width;
+
     #[Column(type: 'string', nullable: false)]
-    private string $passwordUser;
+    private string $description;
 
-    public function __construct($nameUser,$passwordUser)
+    public function __construct($idPicture,$title,$height,$width,$description)
     {
-        $this->nameUser = $nameUser;
-        $this->passwordUser = $passwordUser; 
+        $this->idPicture = $idPicture;
+        $this->title = $title;
+        $this->height = $height; 
+        $this->width = $width;
+        $this->description = $description;
     }
 
-    public function getIdUser(): int
+    public function getIdPicture(): int
     {
-        return $this->idUser;
+        return $this->idPicture;
     }
 
-    public function getNameUser(): string
+    public function getTitle(): string
     {
-        return $this->nameUser;
+        return $this->title;
     }
 
-    public function getPasswordUser(): string
+    public function getHeight(): int
     {
-        return $this->passwordUser;
+        return $this->height;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
     }
 }
