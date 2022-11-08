@@ -1,0 +1,3 @@
+.docker/mariaDB
+composer.lock
+vendor/
