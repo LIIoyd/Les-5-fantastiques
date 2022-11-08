@@ -1,3 +1,8 @@
-.docker/mariaDB
+.idea/
+.vscode/
+/coverage/
+/vendor/
+/.docker/mariadb/*
 composer.lock
-vendor/
+/cache/*
+/logs/*
