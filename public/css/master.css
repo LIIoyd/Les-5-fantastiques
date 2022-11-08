@@ -1,0 +1,62 @@
+.picture {
+  margin: 5px;
+  width: 30px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+#menu {
+  font-size: larger;
+  height: 20px;
+}
+
+#menu div {
+  display: flex;
+  flex-flow: row;
+}
+
+#menu ul {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  background-color: darkslategray;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#menu li {
+  margin: 0 5px;
+  padding: 0;
+}
+
+#menu li a {
+  background-color: darkslategray;
+  color: #FFFFFF;
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+}
+
+#menu li a:hover {
+  color: lightgray;
+}
+
+#menu li ul a {
+  background-color: darkslategray;
+}
+
+#menu ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
+
+#menu li ul {
+  flex-direction: column;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/*# sourceMappingURL=master.css.map */
