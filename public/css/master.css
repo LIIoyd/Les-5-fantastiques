@@ -1,3 +1,15 @@
+video {
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
 .picture {
   margin: 5px;
   width: 30px;
@@ -57,6 +69,72 @@
   position: absolute;
   opacity: 0;
   visibility: hidden;
+}
+
+html {
+  width: 99%;
+  height: 92%;
+}
+
+.content {
+  width: 90%;
+  min-height: 90%;
+  padding: 5%;
+}
+
+.myGalleries {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 0px;
+  padding-bottom: 50px;
+}
+.myGalleries h1 {
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 5em;
+  margin-bottom: 0;
+}
+.myGalleries h2 {
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+}
+
+.gallery {
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/22/23/14/terrier-1851108_960_720.jpg");
+  background-size: cover;
+  width: 250px;
+  height: 250px;
+  border: solid 1px black;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 50px;
+  margin-bottom: 0;
+  display: flex;
+  border-radius: 30% 5%;
+}
+.gallery p {
+  text-shadow: white 1px 1px 10px;
+  align-self: flex-end;
+  font-weight: bold;
+  width: 100%;
+  text-align: right;
+  margin-right: 15%;
+  margin-left: 3%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.createGallery {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
 }
 
 /*# sourceMappingURL=master.css.map */
