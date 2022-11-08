@@ -27,7 +27,6 @@ final class user{
 
     public function __construct($idPicture,$title,$height,$width,$description)
     {
-        $this->idPicture = $idPicture;
         $this->title = $title;
         $this->height = $height; 
         $this->width = $width;
