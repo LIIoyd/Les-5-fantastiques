@@ -10,7 +10,7 @@ return [
     ],
 
     'migrations_paths' => [
-        'App\domain\Migrations' => '/src/domain/Migrations'    
+        'App\Domain\Migrations' => '/src/Domain/Migrations'    
     ],
 
     'all_or_nothing' => true,
