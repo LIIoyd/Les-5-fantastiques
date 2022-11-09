@@ -57,4 +57,29 @@ final class picture{
     {
         return $this->description;
     }
+
+    public function setIdPicture($idPicture)
+    {
+        $this->idPicture = $idPicture;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 }

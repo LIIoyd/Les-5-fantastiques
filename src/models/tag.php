@@ -30,4 +30,14 @@ final class tag{
     {
         return $this->tag;
     }
+
+    public function setIdTag($idTag)
+    {
+        $this->idTag = $idTag;
+    }
+
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+    }
 }
