@@ -17,17 +17,16 @@ video {
   margin-top: 10px;
 }
 
-#menu {
-  font-size: larger;
+.menuNav {
+  font-size: 20px;
   height: 20px;
+  padding-bottom: 10%;
 }
-
-#menu div {
+.menuNav div {
   display: flex;
   flex-flow: row;
 }
-
-#menu ul {
+.menuNav ul {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -37,40 +36,63 @@ video {
   padding: 0;
   text-align: center;
 }
-
-#menu li {
+.menuNav ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
+.menuNav li {
   margin: 0 5px;
   padding: 0;
 }
-
-#menu li a {
+.menuNav li a {
   background-color: darkslategray;
   color: #FFFFFF;
   display: block;
   padding: 15px;
   text-decoration: none;
 }
-
-#menu li a:hover {
+.menuNav li a:hover {
   color: lightgray;
 }
-
-#menu li ul a {
-  background-color: darkslategray;
-}
-
-#menu ul li:hover ul {
-  opacity: 1;
-  visibility: visible;
-}
-
-#menu li ul {
+.menuNav li ul {
   flex-direction: column;
   position: absolute;
   opacity: 0;
   visibility: hidden;
 }
+.menuNav li ul a {
+  background-color: darkslategray;
+}
 
+@media screen and (max-width: 500px) {
+  .menuNav {
+    font-size: 25px;
+    height: 60px;
+    background-color: darkslategray;
+    margin-bottom: 30%;
+  }
+  .menuNav div {
+    display: flex;
+    flex-flow: column;
+  }
+  .menuNav li {
+    justify-content: center;
+  }
+  .menuNav li ul {
+    flex-direction: column;
+    opacity: 0;
+    justify-content: center;
+    visibility: hidden;
+    text-align: center;
+    width: 93%;
+  }
+  .menuNav .menuUl {
+    display: flex;
+    flex-direction: column;
+    background-color: darkslategray;
+    height: auto;
+  }
+}
 html {
   width: 99%;
   height: 92%;
@@ -135,6 +157,53 @@ html {
 .createGallery {
   background-color: rgba(0, 0, 0, 0.6);
   background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
+}
+
+#containerForm {
+  width: 400px;
+  margin: auto;
+}
+#containerForm h1 {
+  width: 38%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+/* Bordered form */
+form {
+  width: calc(100% - 40px);
+  padding: 20px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* Full-width inputs */
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+  background-color: #53af57;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type=submit]:hover {
+  background-color: white;
+  color: #53af57;
+  border: 1px solid #53af57;
 }
 
 /*# sourceMappingURL=master.css.map */

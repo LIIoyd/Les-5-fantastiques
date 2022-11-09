@@ -19,11 +19,6 @@ $app->get('/', function ($request, $response, $args) {
     return $view->render($response, 'index.twig', []);
 });
 
-$app->get('/home', function ($request, $response, $args) {
-    $view = Twig::fromRequest($request);
-    return $view->render($response, 'home.twig', []);
-});
-
 $app->get('/signUp', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     return $view->render($response, 'signUp.twig', []);
