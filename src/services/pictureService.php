@@ -16,6 +16,14 @@ final class pictureService
         $this->logger = $logger;
     }
 
+    public function newPicture($title,$height,$width,$description,$id_gallery){
+            $newpicture = new picture($title,$height,$width,$description,$id_gallery);
+            $this->em->persist($newpicture);
+            $this->em->flush();
+            $this->logger->info("Une image a été créée");
+            echo "Une image a été créée";
+    }
+
 
 
 }
