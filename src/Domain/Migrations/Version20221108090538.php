@@ -32,7 +32,9 @@ final class Version20221108090538 extends AbstractMigration
             date_creat DATE DEFAULT(CURRENT_TIMESTAMP), 
             acces_type VARCHAR(255) NOT NULL,
             description_gallery VARCHAR(255) DEFAULT NULL,
-            PRIMARY KEY(id_gallery))'
+            id_creator INT NOT NULL,
+            PRIMARY KEY(id_gallery),
+            FOREIGN KEY (id_creator) REFERENCES user(id_user))'
             );
 
         $this->addSql('CREATE TABLE picture (
@@ -41,7 +43,9 @@ final class Version20221108090538 extends AbstractMigration
             height INT DEFAULT NULL,
             width INT DEFAULT NULL,
             description_picture VARCHAR(255) DEFAULT NULL,
-            PRIMARY KEY(id_picture))'
+            id_gallery INT NOT NULL,
+            PRIMARY KEY(id_picture),
+            FOREIGN KEY (id_gallery) REFERENCES gallery(id_gallery))'
             );
 
         $this->addSql('CREATE TABLE tag (
@@ -80,8 +84,8 @@ final class Version20221108090538 extends AbstractMigration
         $this->addSql('DROP TABLE galleryTag');
         $this->addSql('DROP TABLE pictureTag');
 
-        $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE gallery');
+        $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE picture');
         $this->addSql('DROP TABLE tag');
     }
