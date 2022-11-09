@@ -85,9 +85,9 @@ final class Version20221108090538 extends AbstractMigration
         $this->addSql('DROP TABLE galleryTag');
         $this->addSql('DROP TABLE pictureTag');
 
+        $this->addSql('DROP TABLE picture');
         $this->addSql('DROP TABLE gallery');
         $this->addSql('DROP TABLE user');
-        $this->addSql('DROP TABLE picture');
         $this->addSql('DROP TABLE tag');
     }
 }
