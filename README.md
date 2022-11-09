@@ -42,10 +42,24 @@ composer install or update
 
 # Initialiser la basse de donnée
 
-1.	Executer la migration dans le docker
+1.	Migration de la base de données
 
 ```
 ./vendor/bin/doctrine-migrations migrate
+```
+
+# Commande utile pour drop ou create la bdd
+
+-	Create la base de donnée
+
+```
+./vendor/bin/doctrine-migrations execute --up 'App\Domain\Migrations\Version20221108090538'
+```
+
+-	Drop la base de donnée
+
+```
+./vendor/bin/doctrine-migrations execute --down 'App\Domain\Migrations\Version20221108090538'
 ```
 
 # Lien vers l'application
