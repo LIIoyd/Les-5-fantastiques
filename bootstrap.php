@@ -70,12 +70,12 @@ $container->set(userControler::class, static function (ContainerInterface $conta
 });
 
 $container->set(galleryService::class, static function (Container $c) {
-    return new userService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
+    return new galleryService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
 });
 
-$container->set(galleryController::class, static function (ContainerInterface $container) {
+$container->set(galleryControler::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new userControler($view, $container->get(userService::class));
+    return new galleryControler($view, $container->get(galleryService::class));
 });
 
 

@@ -17,14 +17,15 @@ class userControler
       $this->userService = $userService;
     }
 
-    public function display(ResponseInterface $response){
-        //$user = $this->userService->newUser('léa','test');
+    public function createUser(ServerRequestInterface $request,ResponseInterface $response, array $args){
+        $user = $this->userService->newUser($_POST['Name'],$_POST['Password']);
 
         return $this->view->render($response, 'app.twig');
     }
 
-    public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
-        $this->display($response);
-        return $response;
+    public function getGallery(ServerRequestInterface $request,ResponseInterface $response, array $args){
+        $user = $this->userService->getGallery('Léa');
+        echo $user;
+        return $this->view->render($response, 'app.twig');
     }
 }

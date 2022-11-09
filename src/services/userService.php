@@ -44,4 +44,9 @@ final class userService
         }
     }
 
+    public function getGallery($name){
+        $reserch = $this->getUser($name);
+        $reserch->getGallery();
+        return $reserch;
+    }
 }

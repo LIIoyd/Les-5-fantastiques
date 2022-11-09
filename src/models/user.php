@@ -8,10 +8,14 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\InverseJoinColumn;
+use Doctrine\ORM\Mapping\OneToMany;
+
+use function PHPSTORM_META\type;
 
 #[Entity, Table(name: 'user')]
 final class user{
@@ -25,15 +29,32 @@ final class user{
     #[Column(type: 'string', nullable: false)]
     private string $password_user;
 
-    #[ManyToMany(targetEntity: gallery::class, inversedBy: 'users')]
+    #[ManyToMany(targetEntity: 'gallery', inversedBy:'users', cascade:["persist"])]
     #[JoinTable(name: 'userGallery')]
-    private Collection $gallery;
+    #[JoinColumn(name: 'id_user', referencedColumnName: 'id_user')]
+    #[InverseJoinColumn(name: 'id_gallery' , referencedColumnName: 'id_gallery')]
+    private Collection $gallerys;
 
     public function __construct($nameUser,$passwordUser)
     {
-        $this->gallery = new ArrayCollection();
+        $this->gallerys = new ArrayCollection();
         $this->name_user = $nameUser;
         $this->password_user = $passwordUser; 
+    } 
+
+    public function getGallery(){
+        return $this->gallerys;
+    }
+
+    public function __toString()
+    {
+        $text = $this->name_user;
+        /*
+         $galRes = $this->gallerys->getValues();
+        foreach($galRes as $gallerys){
+            $text .= " " . $gallerys;
+        }*/
+        return  $text;
     }
 
     public function getIdUser(): int

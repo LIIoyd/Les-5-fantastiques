@@ -27,7 +27,8 @@ final class Version20221108090538 extends AbstractMigration
             );
 
         $this->addSql('CREATE TABLE gallery (
-            id_gallery INT AUTO_INCREMENT NOT NULL, 
+            id_gallery INT AUTO_INCREMENT NOT NULL,
+            link VARCHAR(255) NOT NULL, 
             name_gallery VARCHAR(255) NOT NULL, 
             date_creat DATE DEFAULT(CURRENT_TIMESTAMP), 
             acces_type VARCHAR(255) NOT NULL,
