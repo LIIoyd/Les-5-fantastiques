@@ -8,13 +8,13 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity, Table(name: 'picture')]
-final class user{
+final class tag{
 
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $idTag;
 
     #[Column(type: 'string', nullable: false)]
-    private int $tag;
+    private string $tag;
 
     public function __construct($tag)
     {

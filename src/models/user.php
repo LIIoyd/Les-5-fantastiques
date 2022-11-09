@@ -17,13 +17,13 @@ use Doctrine\ORM\Mapping\InverseJoinColumn;
 final class user{
 
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
-    private int $idUser;
+    private int $id_user;
 
     #[Column(type: 'string', nullable: false)]
-    private int $nameUser;
+    private string $name_user;
 
     #[Column(type: 'string', nullable: false)]
-    private string $passwordUser;
+    private string $password_user;
 
     #[ManyToMany(targetEntity: gallery::class, inversedBy: 'users')]
     #[JoinTable(name: 'userGallery')]
@@ -32,22 +32,22 @@ final class user{
     public function __construct($nameUser,$passwordUser)
     {
         $this->gallery = new ArrayCollection();
-        $this->nameUser = $nameUser;
-        $this->passwordUser = $passwordUser; 
+        $this->name_user = $nameUser;
+        $this->password_user = $passwordUser; 
     }
 
     public function getIdUser(): int
     {
-        return $this->idUser;
+        return $this->id_user;
     }
 
     public function getNameUser(): string
     {
-        return $this->nameUser;
+        return $this->name_user;
     }
 
     public function getPasswordUser(): string
     {
-        return $this->passwordUser;
+        return $this->password_user;
     }
 }

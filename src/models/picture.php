@@ -8,19 +8,19 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity, Table(name: 'picture')]
-final class user{
+final class picture{
 
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $idPicture;
 
     #[Column(type: 'string', nullable: false)]
-    private int $title;
+    private string $title;
 
     #[Column(type: 'integer', nullable: false)]
-    private string $height;
+    private int $height;
 
     #[Column(type: 'integer', nullable: false)]
-    private string $width;
+    private int $width;
 
     #[Column(type: 'string', nullable: false)]
     private string $description;
