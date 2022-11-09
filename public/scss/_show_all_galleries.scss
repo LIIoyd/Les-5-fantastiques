@@ -18,6 +18,10 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   margin-right: 0px;
+
+  padding-left : calc($gallery-size / 10);
+  padding-right : calc($gallery-size / 10);
+
   padding-bottom: calc($gallery-size / 5);
   h1 {
     width: 100%;
@@ -51,7 +55,7 @@ html {
   display: flex;
   border-radius: 30% 5%;
   p {
-    text-shadow: white 1px 1px 10px;
+    text-shadow: white 0px 0px 10px;
     align-self: flex-end;
     font-weight: bold;
     width: 100%;
@@ -67,4 +71,24 @@ html {
 .createGallery {
   background-color: rgba(0,0,0,0.6);
   background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
+}
+
+@media screen and (max-width: 500px) {
+  .content {
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+  }
+  .myGalleries {
+    background-color: rgba(0,0,0,0);
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gallery {
+    width: 40vw;
+    height: 40vw;
+    margin-left : 2.5vw;
+    margin-right : 2.5vw;
+    margin-top : 5vw;
+  }
 }
