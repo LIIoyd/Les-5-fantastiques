@@ -10,7 +10,9 @@
         "symfony/cache": "^6.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "symfony/orm-pack": "^2.2",
-        "doctrine/migrations": "^3.5"
+        "doctrine/migrations": "^3.5",
+        "twig/twig": "^3.4",
+        "slim/php-view": "^3.2"
     },
     "autoload": {
         "psr-4" : {

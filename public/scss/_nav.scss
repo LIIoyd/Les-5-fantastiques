@@ -1,0 +1,107 @@
+$fontBasic: 20px !default;
+
+.picture {
+    margin: 5px;
+    width: 30px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.menuNav {
+    font-size: $fontBasic;
+    height: 20px;
+
+    div {
+        display: flex;
+        flex-flow: row;
+    }
+
+    ul {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        background-color: darkslategray;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+
+        li {
+            &:hover {
+                ul {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    li {
+        margin: 0 5px;
+        padding: 0;
+
+        a {
+            background-color: darkslategray;
+            color: #FFFFFF;
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+
+            &:hover {
+                color: lightgray;
+            }
+        }
+
+        ul {
+            flex-direction: column;
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+
+            a {
+                background-color: darkslategray;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .menuNav {
+        padding-bottom: 3%;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .menuNav {
+        font-size: $fontBasic + 5px;
+        height: 60px;
+        background-color: darkslategray;
+        margin-bottom: 35%;
+
+        div {
+            display: flex;
+            flex-flow: column;
+        }
+
+        li {
+            justify-content: center;
+            ul {
+                flex-direction: column;
+                opacity: 0;
+                justify-content: center;
+                visibility: hidden;
+                text-align: center;
+                width: 93%;
+            }
+        }
+
+        .menuUl {
+            display: flex;
+            flex-direction: column;
+            background-color: darkslategray;
+            height: auto;
+        }
+    }
+
+}
