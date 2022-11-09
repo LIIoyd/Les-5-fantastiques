@@ -28,4 +28,6 @@ $app->get('/GetGallery', \App\controlers\galleryControler::class . ':getGallery'
 
 $app->get('/GetUsers', \App\controlers\galleryControler::class . ':getUsers');
 
+$app->get('/picture', \App\controlers\pictureControler::class . ':start');
+
 $app->run();
