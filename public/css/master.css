@@ -20,7 +20,6 @@ video {
 .menuNav {
   font-size: 20px;
   height: 20px;
-  padding-bottom: 10%;
 }
 .menuNav div {
   display: flex;
@@ -64,12 +63,17 @@ video {
   background-color: darkslategray;
 }
 
+@media screen and (max-width: 900px) {
+  .menuNav {
+    padding-bottom: 3%;
+  }
+}
 @media screen and (max-width: 500px) {
   .menuNav {
     font-size: 25px;
     height: 60px;
     background-color: darkslategray;
-    margin-bottom: 30%;
+    margin-bottom: 35%;
   }
   .menuNav div {
     display: flex;
@@ -160,6 +164,7 @@ html {
 }
 
 #containerForm {
+  padding-top: 10%;
   width: 400px;
   margin: auto;
 }
