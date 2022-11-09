@@ -78,9 +78,9 @@ final class Version20221108090538 extends AbstractMigration
             );
 
         $usersArray = array(
-          array('name' => 'admin', 'password' => 'admin'),
-          array('name' => 'florianFerbach', 'password' => 'coucou'),
-          array('name' => 'geromeCanals', 'password' => 'test')
+          array('name' => 'admin', 'password' => password_hash('admin', PASSWORD_DEFAULT)),
+          array('name' => 'florianFerbach', 'password' => password_hash('coucou', PASSWORD_DEFAULT)),
+          array('name' => 'geromeCanals', 'password' => password_hash('test', PASSWORD_DEFAULT))
         );
         foreach ($usersArray as $userObject) {
             $this->addSql("INSERT INTO user (name_user, password_user) VALUES (:name, :password)", $userObject);
