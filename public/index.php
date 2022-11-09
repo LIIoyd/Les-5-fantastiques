@@ -20,4 +20,8 @@ $app->add(TwigMiddleware::create($app,$twig));
 
 $app->get('/user', \App\controlers\userControler::class . ':start');
 
+$app->get('/NewGallery', \App\controlers\galleryControler::class . ':newGallery');
+
+$app->get('/GetGallery', \App\controlers\galleryControler::class . ':getGallery');
+
 $app->run();

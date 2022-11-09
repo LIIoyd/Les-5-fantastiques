@@ -13,7 +13,8 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\InverseJoinColumn;
 
-#[Entity]
+
+#[Entity, Table(name: 'gallery')]
 class gallery
 {
     // ...

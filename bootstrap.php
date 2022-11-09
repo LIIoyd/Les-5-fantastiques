@@ -4,6 +4,8 @@
 
 use App\controlers\userControler;
 use App\services\userService;
+use App\controlers\galleryControler;
+use App\services\galleryService;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -66,5 +68,15 @@ $container->set(userControler::class, static function (ContainerInterface $conta
     $view = $container->get('view');
     return new userControler($view, $container->get(userService::class));
 });
+
+$container->set(galleryService::class, static function (Container $c) {
+    return new userService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
+});
+
+$container->set(galleryController::class, static function (ContainerInterface $container) {
+    $view = $container->get('view');
+    return new userControler($view, $container->get(userService::class));
+});
+
 
 return $container;
