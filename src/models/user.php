@@ -33,28 +33,22 @@ final class user{
     #[JoinTable(name: 'userGallery')]
     #[JoinColumn(name: 'id_user', referencedColumnName: 'id_user')]
     #[InverseJoinColumn(name: 'id_gallery' , referencedColumnName: 'id_gallery')]
-    private Collection $gallerys;
+    private Collection $galleries;
 
     public function __construct($nameUser,$passwordUser)
     {
-        $this->gallerys = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
         $this->name_user = $nameUser;
         $this->password_user = $passwordUser; 
     } 
 
-    public function getGallery(){
-        return $this->gallerys;
+    public function getGalleries(){
+        return $this->galleries;
     }
 
     public function __toString()
     {
-        $text = $this->name_user;
-        /*
-         $galRes = $this->gallerys->getValues();
-        foreach($galRes as $gallerys){
-            $text .= " " . $gallerys;
-        }*/
-        return  $text;
+        return $this->name_user;
     }
 
     public function getIdUser(): int

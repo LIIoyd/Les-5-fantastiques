@@ -34,8 +34,8 @@ class galleryControler
         $gal = $this->galleryService->getGallery('test');
         $galRes = $gal->getUsers();
         $text = "Nom de galerie: " . $gal->getNameGallery() . " <br> Users : ";
-        foreach($galRes as $gallerys){
-            $text .= " " . $gallerys;
+        foreach($galRes as $galleries){
+            $text .= " " . $galleries;
         }
         echo $text;
         return $this->view->render($response, 'app.twig');

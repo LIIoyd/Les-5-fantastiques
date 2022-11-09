@@ -23,9 +23,14 @@ class userControler
         return $this->view->render($response, 'app.twig');
     }
 
-    public function getGallery(ServerRequestInterface $request,ResponseInterface $response, array $args){
-        $user = $this->userService->getGallery('Léa');
-        echo $user;
+    public function getGalleries(ServerRequestInterface $request,ResponseInterface $response, array $args){
+        $us = $this->userService->getUser('Léa');
+        $userRes = $us->getGalleries();
+        $text = "User: " . $us->getNameUser() . " <br> All galleries : ";
+        foreach($userRes as $user){
+            $text .= " " . $user;
+        }
+        echo  $text;
         return $this->view->render($response, 'app.twig');
     }
 }
