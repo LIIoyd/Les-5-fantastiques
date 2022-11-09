@@ -35,11 +35,14 @@
 			</ul>
 		</nav>
 
-
 		<div id="containerForm">
 
-			<form method="POST">
-				<h1>Connexion</h1>
+			<form action="/createUser" method="POST">
+				<h1>Inscription</h1>
+
+				<p class="responseMess">
+					{{responseMessage}}
+				</p>
 
 				<label>
 					<b>Nom d'utilisateur</b>
@@ -51,13 +54,12 @@
 				</label>
 				<input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-                <label>
+				<label>
 					<b>Confirmation mot de passe</b>
 				</label>
 				<input type="password" placeholder="Confirmer le mot de passe" name="passwordConfirmation" required>
 
 				<input type="submit" id='submit' value='REGISTER'>
-				
 			</form>
 		</div>
 

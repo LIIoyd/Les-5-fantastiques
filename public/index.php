@@ -34,6 +34,9 @@ $app->get('/signIn', function ($request, $response, $args) {
     return $view->render($response, 'signIn.twig', []);
 });
 
+
+$app->post('/createUser', \App\controlers\userControler::class . ':createUser');
+
 //$app->get('/user', \App\controlers\userControler::class . ':createUser');
 
 $app->get('/userGallery', \App\controlers\userControler::class . ':getGalleries');
