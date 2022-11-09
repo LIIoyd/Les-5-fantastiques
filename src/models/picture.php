@@ -25,12 +25,16 @@ final class picture{
     #[Column(type: 'string', nullable: false)]
     private string $description_picture;
 
-    public function __construct($title,$height,$width,$description)
+    #[Column(type: 'integer', nullable: false)]
+    private int $id_gallery;
+
+    public function __construct($title,$height,$width,$description,$id_gallery)
     {
         $this->title = $title;
         $this->height = $height; 
         $this->width = $width;
         $this->description_picture = $description;
+        $this->id_gallery = $id_gallery;
     }
 
     public function getIdPicture(): int
@@ -58,6 +62,11 @@ final class picture{
         return $this->description_picture;
     }
 
+    public function getIdGallery(): int
+    {
+        return $this->id_gallery;
+    }
+
     public function setIdPicture($idPicture)
     {
         $this->id_picture = $idPicture;
@@ -81,5 +90,10 @@ final class picture{
     public function setDescription($description)
     {
         $this->description_picture = $description;
+    }
+
+    public function setIdGallery($id_gallery)
+    {
+        $this->id_gallery = $id_gallery;
     }
 }
