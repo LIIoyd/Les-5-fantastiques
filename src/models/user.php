@@ -50,4 +50,19 @@ final class user{
     {
         return $this->passwordUser;
     }
+
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    public function setNameUser($nameUser)
+    {
+        $this->nameUser = $nameUser;
+    }
+
+    public function setPasswordUser($passwordUser)
+    {
+        $this->passwordUser = $passwordUser;
+    }
 }

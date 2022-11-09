@@ -63,4 +63,24 @@ class gallery
         return $this->description_gallery;
     }
 
+    public function setIdGallery($id_gallery)
+    {
+        $this->id_gallery = $id_gallery;
+    }
+
+    public function setNameGallery($name_gallery)
+    {
+        $this->name_gallery = $name_gallery;
+    }
+
+    public function setAccesType($acces_type)
+    {
+        $this->acces_type = $acces_type;
+    }
+
+    public function setDescriptionGallery($description_gallery)
+    {
+        $this->description_gallery = $description_gallery;
+    }
+
 }
