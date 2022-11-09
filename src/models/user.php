@@ -53,16 +53,16 @@ final class user{
 
     public function setIdUser($idUser)
     {
-        $this->idUser = $idUser;
+        $this->id_user = $idUser;
     }
 
     public function setNameUser($nameUser)
     {
-        $this->nameUser = $nameUser;
+        $this->name_user = $nameUser;
     }
 
     public function setPasswordUser($passwordUser)
     {
-        $this->passwordUser = $passwordUser;
+        $this->password_user = $passwordUser;
     }
 }

@@ -36,11 +36,15 @@ class gallery
     #[Column(type: 'string', nullable: false)]
     private String $description_gallery;
 
-    public function __construct($name_gallery,$acces_type,$description_gallery) {
+    #[Column(type: 'int', nullable: false)]
+    private int $id_creator;
+
+    public function __construct($name_gallery,$acces_type,$description_gallery,$id_creator) {
         $this->users = new ArrayCollection();
         $this->name_gallery = $name_gallery;
         $this->acces_type = $acces_type;
         $this->description_gallery = $description_gallery;
+        $this->id_creator = $id_creator;
     }
 
     public function getIdGallery(): int
@@ -63,6 +67,11 @@ class gallery
         return $this->description_gallery;
     }
 
+    public function getIdCreator(): int
+    {
+        return $this->id_creator;
+    }
+
     public function setIdGallery($id_gallery)
     {
         $this->id_gallery = $id_gallery;
@@ -81,6 +90,11 @@ class gallery
     public function setDescriptionGallery($description_gallery)
     {
         $this->description_gallery = $description_gallery;
+    }
+
+    public function setIdCreator($id_creator) 
+    {
+        $this->id_creator = $id_creator;
     }
 
 }

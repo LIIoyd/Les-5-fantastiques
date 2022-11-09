@@ -11,33 +11,33 @@ use Doctrine\ORM\Mapping\Table;
 final class tag{
 
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
-    private int $idTag;
+    private int $id_tag;
 
     #[Column(type: 'string', nullable: false)]
-    private string $tag;
+    private string $name_tag;
 
     public function __construct($tag)
     {
-        $this->tag = $tag;
+        $this->name_tag = $tag;
     }
 
     public function getIdTag(): int
     {
-        return $this->idTag;
+        return $this->id_tag;
     }
 
     public function getTag(): string
     {
-        return $this->tag;
+        return $this->name_tag;
     }
 
     public function setIdTag($idTag)
     {
-        $this->idTag = $idTag;
+        $this->id_tag = $idTag;
     }
 
     public function setTag($tag)
     {
-        $this->tag = $tag;
+        $this->name_tag = $tag;
     }
 }

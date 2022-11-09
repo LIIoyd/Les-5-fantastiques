@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Table;
 final class picture{
 
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
-    private int $idPicture;
+    private int $id_picture;
 
     #[Column(type: 'string', nullable: false)]
     private string $title;
@@ -23,19 +23,19 @@ final class picture{
     private int $width;
 
     #[Column(type: 'string', nullable: false)]
-    private string $description;
+    private string $description_picture;
 
     public function __construct($title,$height,$width,$description)
     {
         $this->title = $title;
         $this->height = $height; 
         $this->width = $width;
-        $this->description = $description;
+        $this->description_picture = $description;
     }
 
     public function getIdPicture(): int
     {
-        return $this->idPicture;
+        return $this->id_picture;
     }
 
     public function getTitle(): string
@@ -55,12 +55,12 @@ final class picture{
 
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->description_picture;
     }
 
     public function setIdPicture($idPicture)
     {
-        $this->idPicture = $idPicture;
+        $this->id_picture = $idPicture;
     }
 
     public function setTitle($title)
@@ -80,6 +80,6 @@ final class picture{
 
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description_picture = $description;
     }
 }
