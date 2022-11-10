@@ -16,10 +16,10 @@
 						<img class="picture" src="/media/logo.png">
 					</li>
 					<li>
-						<a href="/">Home</a>
+						<a href="/home">Home</a>
 					</li>
 					<li>
-						<a href="/">My Galleries</a>
+						<a href="/myGalleries">My Galleries</a>
 					</li>
 				</div>
 				<div>
@@ -57,29 +57,21 @@
 			<div class="myGalleries">
 				<h1>Painterest</h1>
 
-				<h2>Public galleries</h2>
-				<div class="gallery">
-					<p>Galerie canards canards canards canards canards</p>
-				</div>
-				<div class="gallery">
-					<p>Galerie chiens</p>
-				</div>
-				<div class="gallery">
-					<p>Lilian dans un parc</p>
-				</div>
-				<div class="gallery">
-					<p>Galerie canards canards canards canards canards</p>
-				</div>
-				<div class="gallery">
-					<p>Galerie chiens</p>
-				</div>
-				<div class="gallery">
-					<p>Lilian dans un parc</p>
-				</div>
-				<div class="gallery">
-					<p>Loic le bg</p>
-				</div>
-				<div class="gallery createGallery"></div>
+				{% if private == true %}
+					<h2>Private galleries</h2>
+				{% else %}
+					<h2>Public galleries</h2>
+				{% endif %}
+
+				{% for gallery in galleriesToShow %}
+					<div class="gallery"><p>{{gallery}}</p></div>
+				{% endfor %}
+
+				{% if private == true %}
+					<div class="gallery createGallery"></div>
+				{% endif %}
+
+
 			</div>
 
 		</div>

@@ -78,7 +78,7 @@ $container->set(galleryService::class, static function (Container $c) {
 
 $container->set(galleryControler::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new galleryControler($view, $container->get(galleryService::class));
+    return new galleryControler($view, $container->get(galleryService::class), $container->get(userControler::class));
 });
 
 

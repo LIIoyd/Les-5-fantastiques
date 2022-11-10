@@ -64,15 +64,12 @@ class userControler
         ]);
     }
 
-    public function getGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function getGalleries()
     {
-        $us = $this->userService->getUser('Léa');
-        $userRes = $us->getGalleries();
-        $text = "User: " . $us->getNameUser() . " <br> All galleries : ";
-        foreach ($userRes as $user) {
-            $text .= " " . $user;
-        }
-        echo  $text;
-        return $this->view->render($response, 'app.twig');
+      $usr = $this->userService;
+      // $adm = $usr->getUser($_SESSION('username'));
+      $adm = $usr->getUser('admin');
+      $gal = $adm->getGalleries();
+      return $gal;
     }
 }

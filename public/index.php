@@ -84,6 +84,10 @@ $app->get('/addImage', function ($request, $response, $args) {
     }
 });
 
+$app->get('/home', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
+
+$app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
+
 $app->post('/addImage', \App\controlers\pictureControler::class . ':addImage');
 
 $app->post('/createUser', \App\controlers\userControler::class . ':createUser');
