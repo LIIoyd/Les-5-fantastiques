@@ -36,11 +36,6 @@ $app->get('/', function ($request, $response, $args) {
     }
 });
 
-$app->get('/ViewGallery', function ($request, $response, $args) {
-    $view = Twig::fromRequest($request);
-    return $view->render($response, 'gallery.twig', []);
-});
-
 
 $app->get('/signUp', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
@@ -68,7 +63,7 @@ $app->get('/signIn', function ($request, $response, $args) {
     }
 });
 
-$app->get('/addImage', function ($request, $response, $args) {
+$app->get('/addImage/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'upload.twig', [
@@ -117,7 +112,6 @@ $app->get('/getUsers', \App\controlers\galleryControler::class . ':getUsers');
 $app->get('/picture', \App\controlers\pictureControler::class . ':start');
 
 $app->get('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':displayGalleryPic');
-
 
 // Run app
 $app->run();

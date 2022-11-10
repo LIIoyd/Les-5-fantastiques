@@ -1,6 +1,7 @@
 <?php
 namespace App\models;
 
+use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -24,6 +25,9 @@ class gallery
 
     #[Column(type: 'string', nullable: false)]
     private String $name_gallery;
+
+    #[Column(type: 'date', nullable: false)]
+    private DateTime $date_creat;
 
     #[Column(type: 'string', nullable: false)]
     private String $acces_type;
@@ -71,6 +75,11 @@ class gallery
     public function getNameGallery(): string
     {
         return $this->name_gallery;
+    }
+
+    public function getDateCreat(): DateTime
+    {
+        return $this->date_creat;
     }
 
     public function getAccesType(): string

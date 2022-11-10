@@ -30,6 +30,20 @@ final class galleryService
         return $gallery;
     }
 
+    public function getGalleryId(int $id){
+        $this->logger->info("Recherche d'une galerie");
+        $repo = $this->em->getRepository(gallery::class);
+        $gallery = $repo->findOneBy(
+            array('id_gallery'=>$id)
+        );
+        if($gallery !== null){
+            $this->logger->info("Galerie trouvé :".$gallery->getIdGallery());
+        }else{
+            $this->logger->info("Galerie inconnu");
+        }
+        return $gallery;
+    }
+
     public function getGalleriesByPublicAccess() {
       $this->logger->info("Recherche de toutes les galeries publiques");
        $repo = $this->em->getRepository(gallery::class);

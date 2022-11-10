@@ -94,7 +94,7 @@ $container->set(pictureService::class, static function (Container $c) {
 
 $container->set(pictureControler::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new pictureControler($view, $container->get(pictureService::class),$container->get(tagService::class));
+    return new pictureControler($view, $container->get(pictureService::class),$container->get(galleryService::class),$container->get(userService::class),$container->get(tagService::class));
 });
 
 return $container;

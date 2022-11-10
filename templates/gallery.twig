@@ -8,55 +8,29 @@
 	</head>
 
 	<body>
-		<nav class="menuNav">
-			<ul class="menuUl">
-				<div>
-					<li>
-						<img class="picture" src="/media/logo.png">
-					</li>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/">My Galleries</a>
-					</li>
-				</div>
-				<div>
-					<li class="account">
-						<a href="#">Account</a>
-						<ul>
-							<li><a href="/signIn">Sign in</a></li>
-							<li><a href="/signUp">Sign up</a></li>
-						</ul>
-					</li>
-				</div>
 
-
-			</ul>
-		</nav>
-
-		<video autoplay loop muted>
-			<source src="https://static.videezy.com/system/resources/previews/000/008/153/original/Moving_Floor_V1_01.mp4" type="video/mp4">
-		</video>
+		{% include 'navbar.twig' %}
 
 		<div class="content">
 			<div id="gallery">
 				<div id="infgallery">
 					<div class="title">
-						<h1>Galerie chiens</h1>
+						<h1>{{title}}</h1>
 					</div>
 					<div class="buttons">
 						<input type="button" value="partager la galerie">
 						<input type="button" value="modifier la galerie">
-						<input type="button" class="add" value="+">
+						<form action="/addImage/{{id}}" method="get">
+							<input type="submit" class="add" value="+">
+						</form>
 					</div>
 					<div class="description">
 						<p>Description :</p>	
-						<p>Petite photo trop mignionne</p>
+						<p>{{descr}}</p>
 					</div>
 					<div class="create">
-						<label>Créateur : Erwan B.</label><br>
-						<label>Date de création : 07/11/2022</label>
+						<label>Créateur : {{createur}}</label><br>
+						<label>Date de création : {{date}}</label>
 					</div>
 					<div class="elements">
 						<label>20 élément/s</label>

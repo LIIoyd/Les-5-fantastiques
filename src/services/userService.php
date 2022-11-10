@@ -31,6 +31,21 @@ final class userService
         return $user;
     }
 
+    public function getUserId(int $id)
+    {
+        $this->logger->info("Recherche d'un utilisateur");
+        $repo = $this->em->getRepository(user::class);
+        $user = $repo->findOneBy(
+            array('id_user' => $id)
+        );
+        if ($user !== null) {
+            $this->logger->info("Utilisateur trouvé :" . $user->getIdUser());
+        } else {
+            $this->logger->info("Utilisateur inconnu");
+        }
+        return $user;
+    }
+
 
     public function getPassword(string $name)
     {   

@@ -2,21 +2,25 @@
 
 namespace App\controlers;
 
+use App\services\galleryService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use App\services\pictureService;
 use App\services\tagService;
+use App\services\userService;
 
 class pictureControler
 {
     private $view;
 
-    public function __construct(Twig $view, pictureService $pictureService, tagService $tagService)
+    public function __construct(Twig $view, pictureService $pictureService, galleryService $galleryService, userService $userService, tagService $tagService)
     {
         $this->view = $view;
         $this->pictureService = $pictureService;
         $this->tagService = $tagService;
+        $this->galleryService = $galleryService;
+        $this->userService = $userService;
     }
 
 
@@ -46,8 +50,8 @@ class pictureControler
         $tag = $_POST['tags'];
         $tagTab = explode(",",$tag);
 
-        if(isset($_SESSION['id_gallery']))  { 
-            $idGallery = $_SESSION['id_gallery'];
+        if(isset($args['id_gallery']))  { 
+            $idGallery = $args['id_gallery'];
         }else { 
             $idGallery = 1;
         } 
@@ -126,13 +130,24 @@ class pictureControler
     }
 
     public function displayGalleryPic(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+        $gallery = $this->galleryService->getGalleryId($args['id_gallery']);
+        $user = $this->userService->getUserId($gallery->getIdCreator());
+        /*
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
-        $text = "";
+        $text = [];
         foreach($pictures as $pic){
             $text .= $pic->getTitle() . " " . $pic->getDescription() . "<br>";
         }
         echo $text;
-        return $this->view->render($response, 'app.twig',[]);
+        */
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'gallery.twig', [
+            "id" => $gallery->getIdGallery(),
+            "title" => $gallery->getNameGallery(),
+            "descr" => $gallery->getDescriptionGallery(),
+            "createur" => $user->getNameUser(),
+            "date" => $gallery->getDateCreat()->format('d-m-Y')
+        ]);
     }
 
     public function deletePicture(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
