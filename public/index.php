@@ -71,6 +71,21 @@ $app->get('/logout', function ($request, $response, $args) {
     ]);
 });
 
+$app->get('/addImage', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    if (isset($_SESSION["username"])) {
+        return $view->render($response, 'upload.twig', [
+            'account' => " : " . $_SESSION["username"],
+        ]);
+    } else {
+        return $view->render($response, 'upload.twig', [
+            'account' => "",
+        ]);
+    }
+});
+
+$app->post('/addImage', \App\controlers\pictureControler::class . ':addImage');
+
 $app->post('/createUser', \App\controlers\userControler::class . ':createUser');
 
 $app->post('/connecteUser', \App\controlers\userControler::class . ':connecteUser');

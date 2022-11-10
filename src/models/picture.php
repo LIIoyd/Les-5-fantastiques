@@ -14,6 +14,9 @@ final class picture{
     private int $id_picture;
 
     #[Column(type: 'string', nullable: false)]
+    private string $link;
+
+    #[Column(type: 'string', nullable: false)]
     private string $title;
 
     #[Column(type: 'integer', nullable: false)]
@@ -28,8 +31,9 @@ final class picture{
     #[Column(type: 'integer', nullable: false)]
     private int $id_gallery;
 
-    public function __construct($title,$height,$width,$description,$id_gallery)
+    public function __construct($link,$title,$height,$width,$description,$id_gallery)
     {
+        $this->link = $link;
         $this->title = $title;
         $this->height = $height; 
         $this->width = $width;

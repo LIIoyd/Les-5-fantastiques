@@ -114,6 +114,8 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   margin-right: 0px;
+  padding-left: 25px;
+  padding-right: 25px;
   padding-bottom: 50px;
 }
 .myGalleries h1 {
@@ -121,7 +123,7 @@ html {
   color: white;
   font-weight: bold;
   text-align: center;
-  font-size: 5em;
+  font-size: 3em;
   margin-bottom: 0;
 }
 .myGalleries h2 {
@@ -129,7 +131,7 @@ html {
   color: white;
   font-weight: bold;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .gallery {
@@ -146,7 +148,7 @@ html {
   border-radius: 30% 5%;
 }
 .gallery p {
-  text-shadow: white 1px 1px 10px;
+  text-shadow: white 0px 0px 10px;
   align-self: flex-end;
   font-weight: bold;
   width: 100%;
@@ -163,6 +165,25 @@ html {
   background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
 }
 
+@media screen and (max-width: 500px) {
+  .content {
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+  }
+  .myGalleries {
+    background-color: rgba(0, 0, 0, 0);
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gallery {
+    width: 40vw;
+    height: 40vw;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    margin-top: 5vw;
+  }
+}
 #containerForm {
   padding-top: 10%;
   width: 400px;
@@ -178,6 +199,7 @@ html {
 form {
   width: calc(100% - 40px);
   padding: 20px;
+  padding-bottom: 40px;
   border: 1px solid #f1f1f1;
   background: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -209,6 +231,13 @@ input[type=submit]:hover {
   background-color: white;
   color: #53af57;
   border: 1px solid #53af57;
+}
+
+@media screen and (max-width: 500px) {
+  form {
+    border: none;
+    box-shadow: none;
+  }
 }
 
 /*# sourceMappingURL=master.css.map */

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+
+<body>
+<nav class="menuNav">
+			<ul class="menuUl">
+				<div>
+					<li>
+						<img class="picture" src="/media/logo.png">
+					</li>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/">My Galleries</a>
+					</li>
+				</div>
+				<div>
+					<li class="account">
+						<a href="#">Account
+							{{account}}</a>
+						<ul>
+							{% if account == "" %}
+								<li>
+									<a href="/signIn">Sign in</a>
+								</li>
+								<li>
+									<a href="/signUp">Sign up</a>
+								</li>
+							{% else %}
+								<li>
+									<a href="/logout">Logout</a>
+								</li>
+							{% endif %}
+						</ul>
+					</li>
+				</div>
+
+
+			</ul>
+		</nav>
+
+<div id="containerForm">
+
+<p id="resultMessageUpload">{{resultMessage}}</p>
+
+<form action="/addImage" method="post" enctype="multipart/form-data">
+  <label>
+    <b>Titre de l'image</b>
+  </label>
+  <input type="text" placeholder="Titre de l'image" name="title" required>
+
+  <label>
+	<b>description</b>
+   </label>
+<input type="text" placeholder="description" name="description" required>
+
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+</div>
+
+</body>
+</html>
