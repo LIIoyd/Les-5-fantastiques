@@ -124,4 +124,15 @@ class pictureControler
             'resultMessage' => $mes ." ". $mesTag, 
             'account' => $acc]);
     }
+
+    public function displayGalleryPic(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+        $pictures = $this->pictureService->getAllPicturesGallery(2);
+        $text = "";
+        foreach($pictures as $pic){
+            $text .= $pic->getTitle() . " " . $pic->getDescription() . "<br>";
+        }
+        echo $text;
+        return $this->view->render($response, 'app.twig',[]);
+    }
+
 }

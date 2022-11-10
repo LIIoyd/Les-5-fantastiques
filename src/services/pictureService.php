@@ -24,6 +24,18 @@ final class pictureService
             return $newpicture;
     }
 
-
+    public function getAllPicturesGallery($idgallery){
+        $this->logger->info("Recherche des images d'un gallery");
+        $repo = $this->em->getRepository(picture::class);
+        $pictures = $repo->findBy(
+            array('id_gallery' => $idgallery)
+        );
+        if ($pictures !== null) {
+            $this->logger->info("Images trouvé");
+        } else {
+            $this->logger->info("Images non trouvé");
+        }
+        return $pictures;
+    }
 
 }
