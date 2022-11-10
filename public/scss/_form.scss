@@ -5,11 +5,30 @@ $padding_Form: 20px !default;
     color: red;
 }
 
-#containerForm {
+.containerFormGallery {
+    padding-top: 10%;
+    width: 90%;
+    margin: auto;
+
+    h2 {
+        padding-bottom: 20px;
+    }
+   
+    form {
+        section {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+    
+}
+
+.containerForm {
     padding-top: 10%;
 
     width: 400px;
     margin: auto;
+
     h1 {
         width: 38%;
         margin: 0 auto;
@@ -17,8 +36,10 @@ $padding_Form: 20px !default;
     }
 }
 
+
+
 /* Bordered form */
-form {
+.formCenter {
     width: calc(100% - (2 * $padding_Form));
     padding: $padding_Form;
     padding-bottom: $padding_Form*2;

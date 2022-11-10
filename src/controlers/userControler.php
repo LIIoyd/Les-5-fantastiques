@@ -36,7 +36,7 @@ class userControler
                 $message = "Mot de passe non valide.";
             }
         }
-        return $this->view->render($response, 'signUp.twig', [
+        return $this->view->render($response, 'index.twig', [
             'responseMessage' => $message,
         ]);
     }
@@ -71,5 +71,9 @@ class userControler
       $adm = $usr->getUser('admin');
       $gal = $adm->getGalleries();
       return $gal;
+    }
+
+    public function getIdByName($name) {
+        return $this->userService->getUser($name)->getIdUser();
     }
 }

@@ -21,8 +21,17 @@ class galleryControler
 
     public function newGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $this->galleryService->newGallery('test','test','test',1);
-        return $this->view->render($response, 'app.twig');
+        $title = $_POST['titleGalerie'];
+        $description = $_POST['descriptionGalerie'];
+        $access = $_POST['drone'];
+        $user = $_SESSION["username"];
+        $userId = $this->userControler->getIdByName($user);
+
+        $this->galleryService->newGallery($title, $access, $description, $userId);
+        return $this->view->render($response, 'uploadGallery.twig', [
+            'account' => $_SESSION["username"],
+            'resultMessage' => "La galerie vient d'être créée.",
+        ]);
     }
 
     public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {

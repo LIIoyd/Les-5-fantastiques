@@ -78,7 +78,20 @@ $app->get('/addImage', function ($request, $response, $args) {
             'account' => " : " . $_SESSION["username"],
         ]);
     } else {
-        return $view->render($response, 'upload.twig', [
+        return $view->render($response, 'index.twig', [
+            'account' => "",
+        ]);
+    }
+});
+
+$app->get('/addGallery', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    if (isset($_SESSION["username"])) {
+        return $view->render($response, 'uploadGallery.twig', [
+            'account' => " : " . $_SESSION["username"],
+        ]);
+    } else {
+        return $view->render($response, 'index.twig', [
             'account' => "",
         ]);
     }
@@ -96,11 +109,11 @@ $app->post('/connecteUser', \App\controlers\userControler::class . ':connecteUse
 
 $app->get('/userGallery', \App\controlers\userControler::class . ':getGalleries');
 
-$app->get('/NewGallery', \App\controlers\galleryControler::class . ':newGallery');
+$app->post('/newGallery', \App\controlers\galleryControler::class . ':newGallery');
 
-$app->get('/GetGallery', \App\controlers\galleryControler::class . ':getGallery');
+$app->get('/getGallery', \App\controlers\galleryControler::class . ':getGallery');
 
-$app->get('/GetUsers', \App\controlers\galleryControler::class . ':getUsers');
+$app->get('/getUsers', \App\controlers\galleryControler::class . ':getUsers');
 
 $app->get('/picture', \App\controlers\pictureControler::class . ':start');
 

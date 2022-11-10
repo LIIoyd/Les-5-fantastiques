@@ -184,19 +184,37 @@ html {
     margin-top: 5vw;
   }
 }
-#containerForm {
+.responseMess {
+  text-align: center;
+  color: red;
+}
+
+.containerFormGallery {
+  padding-top: 10%;
+  width: 90%;
+  margin: auto;
+}
+.containerFormGallery h2 {
+  padding-bottom: 20px;
+}
+.containerFormGallery form section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.containerForm {
   padding-top: 10%;
   width: 400px;
   margin: auto;
 }
-#containerForm h1 {
+.containerForm h1 {
   width: 38%;
   margin: 0 auto;
   padding-bottom: 10px;
 }
 
 /* Bordered form */
-form {
+.formCenter {
   width: calc(100% - 40px);
   padding: 20px;
   padding-bottom: 40px;

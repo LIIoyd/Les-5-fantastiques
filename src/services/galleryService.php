@@ -54,10 +54,8 @@ final class galleryService
             $this->em->persist($newgallery);
             $this->em->flush();
             $this->logger->info("Une galerie à été créer");
-            echo "Une galerie à été créer";
         }else{
             $this->logger->info("La galerie existe déjà");
-            echo "La galerie existe déjà";
         }
     }
 
