@@ -9,48 +9,7 @@
 
 	<body>
 
-		<nav class="menuNav">
-			<ul class="menuUl">
-				<div>
-					<li>
-						<img class="picture" src="/media/logo.png">
-					</li>
-					<li>
-						<a href="/home">Home</a>
-					</li>
-					<li>
-						<a href="/myGalleries">My Galleries</a>
-					</li>
-				</div>
-				<div>
-					<li class="account">
-						<a href="#">Account
-							{{account}}</a>
-						<ul>
-							{% if account == "" %}
-								<li>
-									<a href="/signIn">Sign in</a>
-								</li>
-								<li>
-									<a href="/signUp">Sign up</a>
-								</li>
-							{% else %}
-								<li>
-									<a href="/logout">Logout</a>
-								</li>
-							{% endif %}
-						</ul>
-					</li>
-				</div>
-
-
-			</ul>
-		</nav>
-
-
-		<video autoplay loop muted>
-			<source src="https://static.videezy.com/system/resources/previews/000/008/153/original/Moving_Floor_V1_01.mp4" type="video/mp4">
-		</video>
+		{% include 'navbar.twig' %}
 
 		<div class="content">
 

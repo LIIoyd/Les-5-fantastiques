@@ -8,44 +8,8 @@
 	</head>
 
 	<body>
-		<nav class="menuNav">
-			<ul class="menuUl">
-				<div>
-					<li>
-						<img class="picture" src="/media/logo.png">
-					</li>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/">My Galleries</a>
-					</li>
-				</div>
-				<div>
-					<li class="account">
-						<a href="#">Account
-							{{account}}</a>
-						<ul>
-							{% if account == "" %}
-								<li>
-									<a href="/signIn">Sign in</a>
-								</li>
-								<li>
-									<a href="/signUp">Sign up</a>
-								</li>
-							{% else %}
-								<li>
-									<a href="/logout">Logout</a>
-								</li>
-							{% endif %}
-						</ul>
-					</li>
-				</div>
 
-
-			</ul>
-		</nav>
-
+		{% include 'navbar.twig' %}
 
 		<div id="containerForm">
 
