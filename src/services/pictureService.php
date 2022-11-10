@@ -38,4 +38,15 @@ final class pictureService
         return $pictures;
     }
 
+    public function DeletePicture($Picture){
+        $pic = $this->em->find(picture::class, $Picture);
+        if($pic !== null){
+            $this->em->remove($pic);
+            $this->em->flush();
+            $this->logger->info("Une image a été supprimée");
+            return "image supprimée";
+        }
+        return "erreur de suppression";
+    }
+
 }
