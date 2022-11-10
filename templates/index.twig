@@ -23,11 +23,11 @@
 				{% endif %}
 
 				{% for gallery in galleriesToShow %}
-					<div class="gallery"><p>{{gallery}}</p></div>
+					<a href={{gallery.id}}><div class="gallery"><p>{{gallery.name}}</p></div></a>
 				{% endfor %}
 
 				{% if private == true %}
-					<div class="gallery createGallery"></div>
+					<a href="/addGallery"><div class="gallery createGallery"></div></a>
 				{% endif %}
 
 
@@ -37,4 +37,3 @@
 	</body>
 
 </html>
- 

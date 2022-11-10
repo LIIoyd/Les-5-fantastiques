@@ -27,6 +27,11 @@ html {
   padding-right: calc($gallery-size / 10);
 
   padding-bottom: calc($gallery-size / 5);
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
   h1 {
     width: 100%;
     color: white;
@@ -72,8 +77,11 @@ html {
   }
 }
 
+.gallery:hover {
+  cursor: pointer;
+}
+
 .createGallery {
   background-color: rgba(0, 0, 0, 0.6);
   background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
 }
-
