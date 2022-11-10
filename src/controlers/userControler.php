@@ -74,7 +74,7 @@ class userControler
     {
       $usr = $this->userService;
       // $adm = $usr->getUser($_SESSION('username'));
-      $adm = $usr->getUser('admin');
+      $adm = $usr->getUser($_SESSION['username']);
       $gal = $adm->getGalleries();
       return $gal;
     }

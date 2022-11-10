@@ -52,10 +52,15 @@ class galleryControler
 
     public function logoutAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
       unset($_SESSION["username"]);
+      $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
+      $galleriesAndId = [];
+      foreach ($listGalleries as &$gallery) {
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+      }
       return $this->view->render($response, 'index.twig', [
         'account' => "",
         'private' => false,
-        'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
+        'galleriesToShow' => $galleriesAndId,
       ]);
     }
 
@@ -76,10 +81,15 @@ class galleryControler
           }
       }
       if ($message == "Tu es connecté.") {
+        $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
+        $galleriesAndId = [];
+        foreach ($listGalleries as &$gallery) {
+          array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+        }
         return $this->view->render($response, 'index.twig', [
             'account' => " : " . $_SESSION["username"],
             'private' => false,
-            'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
+            'galleriesToShow' => $galleriesAndId,
         ]);
       } else {
         return $this->view->render($response, 'signIn.twig', [
@@ -95,10 +105,15 @@ class galleryControler
       } else {
               $account = "";
       }
+      $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
+      $galleriesAndId = [];
+      foreach ($listGalleries as &$gallery) {
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+      }
       return $this->view->render($response, 'index.twig', [
         'account' => $account,
         'private' => false,
-        'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
+        'galleriesToShow' => $galleriesAndId,
       ]);
     }
 
@@ -108,10 +123,15 @@ class galleryControler
       } else {
               $account = "";
       }
+      $listGalleries = $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries());
+      $galleriesAndId = [];
+      foreach ($listGalleries as &$gallery) {
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+      }
       return $this->view->render($response, 'index.twig', [
         'account' => $account,
         'private' => true,
-        'galleriesToShow' => $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries()),
+        'galleriesToShow' => $galleriesAndId,
       ]);
     }
 
