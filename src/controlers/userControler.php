@@ -41,6 +41,29 @@ class userControler
         ]);
     }
 
+    public function connecteUser(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $message = "Veuillez saisir une authentification correct.";
+        if (isset($_POST['password']) && isset($_POST['username'])) {
+            $reserch = $this->userService->getUser(($_POST['username']));
+            if ($reserch == null) {
+                $message = "Nom d'utilisateur invalide.";
+            } else {
+                $passwordUser = $this->userService->getPassword($_POST['username']);
+                if (password_verify($_POST['password'], $passwordUser)) {
+                    $message = "Tu es connecté.";
+                    $_SESSION["username"] = ($_POST['username']);
+                } else {
+                    $message = "Mot de passe invalide.";
+                }
+            }
+        }
+        return $this->view->render($response, 'signIn.twig', [
+            'response' => $message,
+            'account' => " : " . $_SESSION["username"],
+        ]);
+    }
+
     public function getGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $us = $this->userService->getUser('Léa');

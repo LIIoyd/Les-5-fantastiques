@@ -23,10 +23,21 @@
 				</div>
 				<div>
 					<li class="account">
-						<a href="#">Account</a>
+						<a href="#">Account
+							{{account}}</a>
 						<ul>
-							<li><a href="/signIn">Sign in</a></li>
-							<li><a href="/signUp">Sign up</a></li>
+							{% if account == "" %}
+								<li>
+									<a href="/signIn">Sign in</a>
+								</li>
+								<li>
+									<a href="/signUp">Sign up</a>
+								</li>
+							{% else %}
+								<li>
+									<a href="/logout">Logout</a>
+								</li>
+							{% endif %}
 						</ul>
 					</li>
 				</div>

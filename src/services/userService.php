@@ -31,6 +31,15 @@ final class userService
         return $user;
     }
 
+
+    public function getPassword(string $name)
+    {   
+        $user = $this->getUser($name);
+        $password = $user->getPasswordUser();
+        return $password;
+    }
+    
+
     public function newUser($name, $password)
     {
         $newuser = new user($name, $password);
