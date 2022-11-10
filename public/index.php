@@ -36,6 +36,12 @@ $app->get('/', function ($request, $response, $args) {
     }
 });
 
+$app->get('/ViewGallery', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    return $view->render($response, 'gallery.twig', []);
+});
+
+
 $app->get('/signUp', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {

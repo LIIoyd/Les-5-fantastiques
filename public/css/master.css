@@ -19,7 +19,7 @@ video {
 
 .menuNav {
   font-size: 20px;
-  height: 20px;
+  height: auto;
 }
 .menuNav div {
   display: flex;
@@ -45,7 +45,7 @@ video {
 }
 .menuNav li a {
   background-color: darkslategray;
-  color: #FFFFFF;
+  color: #ffffff;
   display: block;
   padding: 15px;
   text-decoration: none;
@@ -63,14 +63,9 @@ video {
   background-color: darkslategray;
 }
 
-@media screen and (max-width: 900px) {
+@media (max-width: 500px) {
   .menuNav {
-    padding-bottom: 3%;
-  }
-}
-@media screen and (max-width: 500px) {
-  .menuNav {
-    font-size: 25px;
+    font-size: 20px;
     height: 60px;
     background-color: darkslategray;
     margin-bottom: 35%;
@@ -97,18 +92,22 @@ video {
     height: auto;
   }
 }
+body {
+  min-width: 450px;
+}
+
 html {
   width: 99%;
   height: 92%;
 }
 
 .content {
-  width: 90%;
-  min-height: 90%;
-  padding: 5%;
+  width: 96%;
+  min-height: 96%;
+  padding: 2%;
 }
 
-.myGalleries {
+.galleries {
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-wrap: wrap;
@@ -118,7 +117,7 @@ html {
   padding-right: 25px;
   padding-bottom: 50px;
 }
-.myGalleries h1 {
+.galleries h1 {
   width: 100%;
   color: white;
   font-weight: bold;
@@ -126,7 +125,7 @@ html {
   font-size: 3em;
   margin-bottom: 0;
 }
-.myGalleries h2 {
+.galleries h2 {
   width: 100%;
   color: white;
   font-weight: bold;
@@ -251,11 +250,100 @@ input[type=submit]:hover {
   border: 1px solid #53af57;
 }
 
-@media screen and (max-width: 500px) {
+
+@media (max-width: 800px) {
   form {
     border: none;
     box-shadow: none;
   }
 }
+
+.add {
+  border-radius: 50%;
+}
+
+#infgallery {
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 10px;
+  grid-auto-rows: 50px;
+  align-items: center;
+}
+#infgallery .title {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 1;
+}
+#infgallery .buttons {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 1;
+}
+#infgallery .description {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+#infgallery .create {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 3;
+}
+#infgallery .elements {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 3;
+}
+
+#mygallery {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#mygallery .image {
+  margin: 2%;
+}
+#mygallery .image img {
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+@media (max-width: 700px) {
+  #infgallery {
+    grid-template-columns: repeat(2, 49%);
+    grid-auto-rows: 70px;
+  }
+  #infgallery .title {
+    text-align: center;
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  #infgallery .buttons {
+    text-align: center;
+    grid-column: 1/3;
+    grid-row: 4;
+  }
+  #infgallery .description {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  #infgallery .create {
+    text-align: left;
+    grid-column: 1;
+    grid-row: 3;
+  }
+  #infgallery .elements {
+    text-align: right;
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
 
 /*# sourceMappingURL=master.css.map */

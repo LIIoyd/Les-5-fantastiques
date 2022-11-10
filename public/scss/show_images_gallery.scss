@@ -1,0 +1,97 @@
+.add {
+    border-radius: 50%;
+}
+
+#infgallery {
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+    gap: 10px;
+    grid-auto-rows: 50px;
+    align-items: center;
+
+    .title {
+        text-align: left;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .buttons {
+        text-align: right;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .description {
+        grid-column: 1 / 3;
+        grid-row: 2;
+    }
+
+    .create {
+        text-align: left;
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .elements {
+        text-align: right;
+        grid-column: 2;
+        grid-row: 3;
+    }
+}
+
+#mygallery {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    .image {
+        margin: 2%;
+        img {
+            max-width: 300px;
+            max-height: 300px;
+            min-width: 100px;
+            min-height: 100px;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    #infgallery {
+        grid-template-columns: repeat(2, 49%);
+        grid-auto-rows: 70px;
+
+        .title {
+            text-align: center;
+            grid-column: 1/3;
+            grid-row: 1;
+        }
+
+        .buttons {
+            text-align: center;
+            grid-column: 1/3;
+            grid-row: 4;
+        }
+
+        .description {
+            grid-column: 1 / 3;
+            grid-row: 2;
+        }
+
+        .create {
+            text-align: left;
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .elements {
+            text-align: right;
+            grid-column: 2;
+            grid-row: 3;
+        }
+    }
+}
