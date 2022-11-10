@@ -40,6 +40,12 @@ class gallery
     #[InverseJoinColumn(name: 'id_user' , referencedColumnName: 'id_user')]
     private Collection $users;
 
+    #[ManyToMany(targetEntity: 'tag', inversedBy:'gallerys', cascade:["persist"])]
+    #[JoinTable(name: 'galleryTag')]
+    #[JoinColumn(name: 'id_gallery', referencedColumnName: 'id_gallery')]
+    #[InverseJoinColumn(name: 'id_tag' , referencedColumnName: 'id_tag')]
+    private Collection $tags;
+
     public function __construct($name_gallery,$acces_type,$description_gallery,$id_creator) {
         $this->users = new ArrayCollection();
         $this->name_gallery = $name_gallery;

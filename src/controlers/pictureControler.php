@@ -6,15 +6,17 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use App\services\pictureService;
+use App\services\tagService;
 
 class pictureControler
 {
     private $view;
 
-    public function __construct(Twig $view, pictureService $pictureService)
+    public function __construct(Twig $view, pictureService $pictureService, tagService $tagService)
     {
         $this->view = $view;
         $this->pictureService = $pictureService;
+        $this->tagService = $tagService;
     }
 
 
@@ -24,11 +26,26 @@ class pictureControler
         return $this->view->render($response, 'app.twig');
     }
 
+    public function addTag($picture,$tagTab){
+        if(count($tagTab) > 5){
+            return "erreur trop de tags" ;
+        }
+
+        foreach($tagTab as $tag){
+            $this->tagService->newtag(trim($tag),$picture);
+        }
+
+        return "tag ajouté";
+    }
+
     public function addImage(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
         $title = $_POST['title'];
         $des = $_POST['description'];
+        $tag = $_POST['tags'];
+        $tagTab = explode(",",$tag);
+
         if(isset($_SESSION['id_gallery']))  { 
             $idGallery = $_SESSION['id_gallery'];
         }else { 
@@ -65,8 +82,9 @@ class pictureControler
             $imgIfno = getimagesize($target_file);
             $height = $imgIfno[1];
             $width = $imgIfno[0];
-            $this->pictureService->newPicture($target_file,$title,$height,$width,$des,$idGallery);
-            $mes = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded.";
+            $picture = $this->pictureService->newPicture($target_file,$title,$height,$width,$des,$idGallery);
+            $mesTag = $this->addTag($picture,$tagTab);
+            $mes = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded." . $mesTag;
             return $this->view->render($response, 'upload.twig',[
             'resultMessage' => $mes , 'account' => $acc]);
        
@@ -96,13 +114,14 @@ class pictureControler
                 $imgIfno = getimagesize($target_file);
                 $height = $imgIfno[1];
                 $width = $imgIfno[0];
-                $this->pictureService->newPicture($target_file,$title,$height,$width,$des,$idGallery);
+                $picture = $this->pictureService->newPicture($target_file,$title,$height,$width,$des,$idGallery);
+                $mesTag = $this->addTag($picture,$tagTab);
             } else {
                 $mes = "Sorry, there was an error uploading your file.";
             }
         }
         return $this->view->render($response, 'upload.twig',[
-            'resultMessage' => $mes, 
+            'resultMessage' => $mes ." ". $mesTag, 
             'account' => $acc]);
     }
 }

@@ -21,6 +21,7 @@ final class pictureService
             $this->em->persist($newpicture);
             $this->em->flush();
             $this->logger->info("Une image a été créée");
+            return $newpicture;
     }
 
 
