@@ -50,7 +50,7 @@ input[type=submit]:hover {
     border: 1px solid #53af57;
 }
 
-@media screen and (max-width: 500px) {
+@media (max-width: 800px) {
     form {
         border: none;
         box-shadow: none;
