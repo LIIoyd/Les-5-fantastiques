@@ -110,7 +110,7 @@ $app->get('/getUsers', \App\controlers\galleryControler::class . ':getUsers');
 
 $app->get('/picture', \App\controlers\pictureControler::class . ':start');
 
-$app->get('/gpic2', \App\controlers\pictureControler::class . ':displayGalleryPic');
+$app->get('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':displayGalleryPic');
 
 
 // Run app

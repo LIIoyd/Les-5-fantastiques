@@ -126,7 +126,7 @@ class pictureControler
     }
 
     public function displayGalleryPic(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
-        $pictures = $this->pictureService->getAllPicturesGallery(2);
+        $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
         $text = "";
         foreach($pictures as $pic){
             $text .= $pic->getTitle() . " " . $pic->getDescription() . "<br>";
