@@ -50,18 +50,69 @@ class galleryControler
         ]);
     }
 
-    public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+    public function logoutAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+      unset($_SESSION["username"]);
+      return $this->view->render($response, 'index.twig', [
+        'account' => "",
+        'private' => false,
+        'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
+      ]);
+    }
+
+    public function connecteAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+      $message = "Veuillez saisir une authentification correct.";
+      if (isset($_POST['password']) && isset($_POST['username'])) {
+          $reserch = $this->userControler->userService->getUser(($_POST['username']));
+          if ($reserch == null) {
+              $message = "Nom d'utilisateur invalide.";
+          } else {
+              $passwordUser = $this->userControler->userService->getPassword($_POST['username']);
+              if (password_verify($_POST['password'], $passwordUser)) {
+                  $message = "Tu es connecté.";
+                  $_SESSION["username"] = ($_POST['username']);
+              } else {
+                  $message = "Mot de passe invalide.";
+              }
+          }
+      }
+      if ($message == "Tu es connecté.") {
         return $this->view->render($response, 'index.twig', [
-          'private' => false,
-          'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
+            'account' => " : " . $_SESSION["username"],
+            'private' => false,
+            'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
         ]);
+      } else {
+        return $this->view->render($response, 'signIn.twig', [
+            'response' => $message,
+            'account' => "",
+        ]);
+      }
+    }
+
+    public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+      if (isset($_SESSION["username"])) {
+              $account = " : " . $_SESSION["username"];
+      } else {
+              $account = "";
+      }
+      return $this->view->render($response, 'index.twig', [
+        'account' => $account,
+        'private' => false,
+        'galleriesToShow' => $this->galleryService->getGalleriesByPublicAccess(),
+      ]);
     }
 
     public function getMyGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-        return $this->view->render($response, 'index.twig', [
-          'private' => true,
-          'galleriesToShow' => $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries()),
-        ]);
+      if (isset($_SESSION["username"])) {
+              $account = " : " . $_SESSION["username"];
+      } else {
+              $account = "";
+      }
+      return $this->view->render($response, 'index.twig', [
+        'account' => $account,
+        'private' => true,
+        'galleriesToShow' => $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries()),
+      ]);
     }
 
     public function getGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{

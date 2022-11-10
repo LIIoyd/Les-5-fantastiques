@@ -62,15 +62,6 @@ $app->get('/signIn', function ($request, $response, $args) {
     }
 });
 
-$app->get('/logout', function ($request, $response, $args) {
-    unset($_SESSION["username"]);
-    $view = Twig::fromRequest($request);
-
-    return $view->render($response, 'index.twig', [
-        'account' => "",
-    ]);
-});
-
 $app->get('/addImage', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
@@ -105,7 +96,9 @@ $app->post('/addImage', \App\controlers\pictureControler::class . ':addImage');
 
 $app->post('/createUser', \App\controlers\userControler::class . ':createUser');
 
-$app->post('/connecteUser', \App\controlers\userControler::class . ':connecteUser');
+$app->post('/connecteUser', \App\controlers\galleryControler::class . ':connecteAndShowPublicGalleries');
+
+$app->get('/logout', \App\controlers\galleryControler::class . ':logoutAndShowPublicGalleries');
 
 $app->get('/userGallery', \App\controlers\userControler::class . ':getGalleries');
 

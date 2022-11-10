@@ -10,7 +10,11 @@
           <a href="/home">Home</a>
         </li>
         <li>
-          <a href="/myGalleries">My Galleries</a>
+          {% if account == "" %}
+            <a href="/signIn">My Galleries</a>
+          {% else %}
+            <a href="/myGalleries">My Galleries</a>
+          {% endif %}
         </li>
       </div>
       <div>

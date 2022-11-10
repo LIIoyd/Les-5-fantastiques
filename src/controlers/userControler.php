@@ -58,10 +58,16 @@ class userControler
                 }
             }
         }
-        return $this->view->render($response, 'signIn.twig', [
-            'response' => $message,
-            'account' => " : " . $_SESSION["username"],
-        ]);
+        if ($message == "Tu es connecté.") {
+          return $this->view->render($response, 'index.twig', [
+              'account' => " : " . $_SESSION["username"],
+          ]);
+        } else {
+          return $this->view->render($response, 'signIn.twig', [
+              'response' => $message,
+              'account' => " : " . $_SESSION["username"],
+          ]);
+        }
     }
 
     public function getGalleries()
