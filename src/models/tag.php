@@ -49,6 +49,11 @@ final class tag{
         $this->pictures->add($picture);
     }
 
+    public function addGallery($gallery){
+        $this->gallerys->add($gallery);
+    }
+
+
     public function getPictures(){
         return $this->pictures;
     }

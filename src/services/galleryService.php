@@ -51,6 +51,7 @@ final class galleryService
         $reserch = $this->getGallery($name);
         if($reserch == null){
             $newgallery = new gallery($name,$acces_type,$description_gallery,$id_creator);
+            return $newgallery;
             $this->em->persist($newgallery);
             $this->em->flush();
             $this->logger->info("Une galerie à été créer");

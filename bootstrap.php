@@ -77,18 +77,19 @@ $container->set(galleryService::class, static function (Container $c) {
     return new galleryService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
 });
 
+$container->set(tagService::class, static function (Container $c) {
+    return new tagService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
+});
+
+
 $container->set(galleryControler::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new galleryControler($view, $container->get(galleryService::class), $container->get(userControler::class));
+    return new galleryControler($view, $container->get(galleryService::class), $container->get(userControler::class),$container->get(tagService::class));
 });
 
 
 $container->set(pictureService::class, static function (Container $c) {
     return new pictureService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
-});
-
-$container->set(tagService::class, static function (Container $c) {
-    return new tagService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
 });
 
 $container->set(pictureControler::class, static function (ContainerInterface $container) {

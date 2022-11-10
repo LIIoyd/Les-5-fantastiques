@@ -31,6 +31,22 @@ final class tagService
             $this->logger->info("Un tag a été créée");
     }
 
+    
+    public function newTagGallery($name_tag , $Gallery){
+            $tag = $this->getTag($name_tag);
+            if($tag !== null){
+                $tag->addGallery($Gallery);
+                $this->em->persist($tag);
+                $this->em->flush();
+                return $tag;
+            }
+            $newtag = new tag($name_tag);
+            $newtag->addGallery($Gallery);
+            $this->em->persist($newtag);
+            $this->em->flush();
+            $this->logger->info("Un tag a été créée");
+    }
+
     public function getTag($name_tag)
     {
         $this->logger->info("Recherche d'un tag");
