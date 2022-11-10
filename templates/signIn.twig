@@ -1,45 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr"></html>
 <html>
-
 	<head>
 		<link rel="stylesheet" href="/css/master.css">
 		<title>Fantastic-pic</title>
 	</head>
 
 	<body>
-		<nav class="menuNav">
-			<ul class="menuUl">
-				<div>
-					<li>
-						<img class="picture" src="/media/logo.png">
-					</li>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/">My Galleries</a>
-					</li>
-				</div>
-				<div>
-					<li class="account">
-						<a href="#">Account</a>
-						<ul>
-							<li><a href="/signIn">Sign in</a></li>
-							<li><a href="/signUp">Sign up</a></li>
-						</ul>
-					</li>
-				</div>
 
+		{% include 'navbar.twig' %}
 
-			</ul>
-		</nav>
+		<div class="containerForm">
 
-
-		<div id="containerForm">
-
-			<form method="POST">
+			<form class="formCenter" action="/connecteUser" method="POST">
 				<h1>Connexion</h1>
+
+				<p class="response">
+					{{response}}
+				</p>
 
 				<label>
 					<b>Nom d'utilisateur</b>

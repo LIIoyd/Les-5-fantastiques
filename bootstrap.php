@@ -8,6 +8,7 @@ use App\controlers\galleryControler;
 use App\services\galleryService;
 use App\controlers\pictureControler;
 use App\services\pictureService;
+use App\services\tagService;
 use Doctrine\Common\Cache\Psr6\DoctrineProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -76,9 +77,14 @@ $container->set(galleryService::class, static function (Container $c) {
     return new galleryService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
 });
 
+$container->set(tagService::class, static function (Container $c) {
+    return new tagService($c->get(EntityManager::class), $c->get(LoggerInterface::class));
+});
+
+
 $container->set(galleryControler::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new galleryControler($view, $container->get(galleryService::class));
+    return new galleryControler($view, $container->get(galleryService::class), $container->get(userControler::class),$container->get(tagService::class));
 });
 
 
@@ -88,7 +94,7 @@ $container->set(pictureService::class, static function (Container $c) {
 
 $container->set(pictureControler::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new pictureControler($view, $container->get(pictureService::class));
+    return new pictureControler($view, $container->get(pictureService::class),$container->get(tagService::class));
 });
 
 return $container;

@@ -164,19 +164,56 @@ html {
   background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
 }
 
-#containerForm {
+@media screen and (max-width: 500px) {
+  .content {
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+  }
+  .myGalleries {
+    background-color: rgba(0, 0, 0, 0);
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gallery {
+    width: 40vw;
+    height: 40vw;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    margin-top: 5vw;
+  }
+}
+.responseMess {
+  text-align: center;
+  color: red;
+}
+
+.containerFormGallery {
+  padding-top: 10%;
+  width: 90%;
+  margin: auto;
+}
+.containerFormGallery h2 {
+  padding-bottom: 20px;
+}
+.containerFormGallery form section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.containerForm {
   padding-top: 10%;
   width: 400px;
   margin: auto;
 }
-#containerForm h1 {
+.containerForm h1 {
   width: 38%;
   margin: 0 auto;
   padding-bottom: 10px;
 }
 
 /* Bordered form */
-form {
+.formCenter {
   width: calc(100% - 40px);
   padding: 20px;
   padding-bottom: 40px;
@@ -213,12 +250,14 @@ input[type=submit]:hover {
   border: 1px solid #53af57;
 }
 
+
 @media (max-width: 800px) {
   form {
     border: none;
     box-shadow: none;
   }
 }
+
 .add {
   border-radius: 50%;
 }
@@ -305,5 +344,6 @@ input[type=submit]:hover {
     grid-row: 3;
   }
 }
+
 
 /*# sourceMappingURL=master.css.map */
