@@ -23,7 +23,10 @@
 				{% endif %}
 
 				{% for gallery in galleriesToShow %}
-					<a href={{gallery.id}}><div class="gallery"><p>{{gallery.name}}</p></div></a>
+					<a href={{gallery.id}}><div class="gallery">
+						<img src="{{gallery.img}}">
+						<div><p>{{gallery.name}}</p></div>
+					</div></a>
 				{% endfor %}
 
 				{% if private == true %}

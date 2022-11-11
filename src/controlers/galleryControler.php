@@ -55,7 +55,7 @@ class galleryControler
       $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
       $galleriesAndId = [];
       foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
       }
       return $this->view->render($response, 'index.twig', [
         'account' => "",
@@ -84,7 +84,7 @@ class galleryControler
         $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
         $galleriesAndId = [];
         foreach ($listGalleries as &$gallery) {
-          array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+          array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
         }
         return $this->view->render($response, 'index.twig', [
             'account' => " : " . $_SESSION["username"],
@@ -108,7 +108,7 @@ class galleryControler
       $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
       $galleriesAndId = [];
       foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
       }
       return $this->view->render($response, 'index.twig', [
         'account' => $account,
@@ -126,7 +126,7 @@ class galleryControler
       $listGalleries = $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries());
       $galleriesAndId = [];
       foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery()]);
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
       }
       return $this->view->render($response, 'index.twig', [
         'account' => $account,
