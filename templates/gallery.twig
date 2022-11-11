@@ -38,39 +38,11 @@
 				</div>
 
 				<div id="mygallery">
-					<div class="image">
-						<img src="/media/2.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/1.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/3.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/4.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/4.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/4.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/4.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/1.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/2.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/2.jpg">
-					</div>
-					<div class="image">
-						<img src="/media/3.jpg">
-					</div>
+					 {% for image in images %}
+					 	<div class="image">
+							<img src="/{{image.getLink()}}">
+						</div>
+   					 {% endfor %}
 				</div>
 			</div>
 		</div>

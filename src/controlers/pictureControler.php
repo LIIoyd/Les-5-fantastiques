@@ -132,21 +132,16 @@ class pictureControler
     public function displayGalleryPic(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
         $gallery = $this->galleryService->getGalleryId($args['id_gallery']);
         $user = $this->userService->getUserId($gallery->getIdCreator());
-        /*
+        
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
-        $text = [];
-        foreach($pictures as $pic){
-            $text .= $pic->getTitle() . " " . $pic->getDescription() . "<br>";
-        }
-        echo $text;
-        */
         $view = Twig::fromRequest($request);
         return $view->render($response, 'gallery.twig', [
             "id" => $gallery->getIdGallery(),
             "title" => $gallery->getNameGallery(),
             "descr" => $gallery->getDescriptionGallery(),
             "createur" => $user->getNameUser(),
-            "date" => $gallery->getDateCreat()->format('d-m-Y')
+            "date" => $gallery->getDateCreat()->format('d-m-Y'),
+            "images" => $pictures,
         ]);
     }
 

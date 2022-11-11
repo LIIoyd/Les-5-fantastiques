@@ -86,6 +86,11 @@ final class picture{
         return $this->id_gallery;
     }
 
+    public function getLink(): string
+    {
+        return $this->link;
+    }
+
     public function setIdPicture($idPicture)
     {
         $this->id_picture = $idPicture;
