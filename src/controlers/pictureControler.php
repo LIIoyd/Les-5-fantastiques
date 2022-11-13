@@ -50,16 +50,14 @@ class pictureControler
         $tag = $_POST['tags'];
         $tagTab = explode(",",$tag);
 
-        if(isset($args['id_gallery']))  { 
-            $idGallery = $args['id_gallery'];
-        }else { 
-            $idGallery = 1;
-        } 
+        
+        $idGallery = $args['id_gallery'];
+       
         if (isset($_SESSION["username"])) {
            $acc = " : " . $_SESSION["username"];
          } else {
         $acc ='account';
-     }
+         }
   
         //$this->pictureService->newPicture();
         $target_dir = "uploads/";
@@ -76,8 +74,8 @@ class pictureControler
                 $mes = "File is not an image.";
                 $uploadOk = 0;
                 return $this->view->render($response, 'upload.twig',[
-                'resultMessage' => $mes,
-                'account' => $acc,]);
+                'resultMessage' => $mes,'id' => $idGallery,
+                'account' => $acc ]);
             }
         }
 
@@ -90,7 +88,7 @@ class pictureControler
             $mesTag = $this->addTag($picture,$tagTab);
             $mes = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded." . $mesTag;
             return $this->view->render($response, 'upload.twig',[
-            'resultMessage' => $mes , 'account' => $acc]);
+            'resultMessage' => $mes , 'id' => $idGallery, 'account' => $acc ]);
        
         }
 
@@ -99,7 +97,7 @@ class pictureControler
             $mes = "Sorry, your file is too large.";
             $uploadOk = 0;
             return $this->view->render($response, 'upload.twig',[
-            'resultMessage' => $mes , 'account' => $acc]);
+            'resultMessage' => $mes , 'id' => $idGallery, 'account' => $acc , ]);
         }
 
         // Allow certain file formats
@@ -108,25 +106,26 @@ class pictureControler
             $mes = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
             return $this->view->render($response, 'upload.twig',[
-            'resultMessage' => $mes ,'account' => $acc]);
+            'resultMessage' => $mes ,  'id' => $idGallery ,'account' => $acc ]);
         }
-
+        
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk !== 0) {
+            
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                $mes = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded.";
                 $imgIfno = getimagesize($target_file);
                 $height = $imgIfno[1];
                 $width = $imgIfno[0];
                 $picture = $this->pictureService->newPicture($target_file,$title,$height,$width,$des,$idGallery);
                 $mesTag = $this->addTag($picture,$tagTab);
+                $mes = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded.";
             } else {
                 $mes = "Sorry, there was an error uploading your file.";
             }
         }
         return $this->view->render($response, 'upload.twig',[
-            'resultMessage' => $mes ." ". $mesTag, 
-            'account' => $acc]);
+            'resultMessage' => $mes ." ". $mesTag,  'id' => $idGallery,
+            'account' => $acc ]);
     }
 
     public function displayGalleryPic(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{

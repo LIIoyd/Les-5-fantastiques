@@ -68,6 +68,7 @@ $app->get('/addImage/{id_gallery}', function ($request, $response, $args) {
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'upload.twig', [
             'account' => " : " . $_SESSION["username"],
+            'id' => $args['id_gallery'],
         ]);
     } else {
         return $view->render($response, 'index.twig', [
@@ -93,7 +94,7 @@ $app->get('/home', \App\controlers\galleryControler::class . ':getAllPublicGalle
 
 $app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
 
-$app->post('/addImage', \App\controlers\pictureControler::class . ':addImage');
+$app->post('/addImage/{id_gallery}', \App\controlers\pictureControler::class . ':addImage');
 
 $app->post('/createUser', \App\controlers\userControler::class . ':createUser');
 

@@ -26,7 +26,7 @@ class gallery
     #[Column(type: 'string', nullable: false)]
     private String $name_gallery;
 
-    #[Column(type: 'date', nullable: false)]
+    #[Column(type: 'datetime', nullable: false)]
     private DateTime $date_creat;
 
     #[Column(type: 'string', nullable: false)]

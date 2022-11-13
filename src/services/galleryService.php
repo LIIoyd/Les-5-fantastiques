@@ -72,6 +72,7 @@ final class galleryService
         }else{
             $this->logger->info("La galerie existe déjà");
         }
+        return  $reserch;
     }
 
 }
