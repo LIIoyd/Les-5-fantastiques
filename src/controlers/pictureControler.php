@@ -148,7 +148,7 @@ class pictureControler
             $currentPage = 1;
         }
 
-        $parPage = 1;
+        $parPage = 10;
         $pages = ceil(count($pictures) / $parPage);
         $premier = ($currentPage * $parPage) - $parPage;
 

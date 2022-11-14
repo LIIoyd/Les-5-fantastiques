@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 video {
   height: 100vh;
   width: 100vw;
@@ -468,6 +469,64 @@ footer {
   min-height: 100px;
   text-align: center;
   justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.pagination_bar {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+}
+.pagination_bar .unDiv {
+  background: #dde1e7;
+  padding: 25px;
+  border-radius: 3px;
+  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.4509803922), 3px 3px 5px rgba(94, 104, 121, 0.288);
+}
+.pagination_bar .unDiv .pagination {
+  display: flex;
+  list-style: none;
+}
+.pagination_bar .unDiv .pagination li {
+  flex: 1;
+  margin: 0px 5px;
+  border-radius: 3px;
+  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.4509803922), 3px 3px 5px rgba(94, 104, 121, 0.288);
+}
+.pagination_bar .unDiv .pagination a {
+  font-size: 18px;
+  text-decoration: none;
+  height: 45px;
+  width: 55px;
+  display: block;
+  line-height: 45px;
+}
+.pagination_bar .unDiv .pagination a:hover {
+  cursor: pointer;
+}
+.pagination_bar .unDiv .pagination li:first-child a {
+  width: 120px;
+}
+.pagination_bar .unDiv .pagination li:last-child a {
+  width: 100px;
+}
+.pagination_bar .unDiv .pagination li:first-child {
+  margin: 0 15px 0 0;
+}
+.pagination_bar .unDiv .pagination li:last-child {
+  margin: 0 0 0 15px;
+}
+.pagination_bar .unDiv .pagination .selected {
+  background-color: black;
+  color: white;
 }
 
 /*# sourceMappingURL=master.css.map */
