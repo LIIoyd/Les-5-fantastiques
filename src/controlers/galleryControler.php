@@ -184,7 +184,7 @@ class galleryControler
 
   public function deleteGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
-    $idGallery = $args['id_gallery'];
+    $idGallery = $_POST['galleryId'];
     $this->galleryService->deleteGallery($idGallery);
     return $this->getAllPublicGalleries($request, $response, $args);
   }
