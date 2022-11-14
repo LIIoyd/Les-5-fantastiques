@@ -139,6 +139,7 @@ class pictureControler
 
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
 
+        $tags = $gallery->getTags()->getValues();
         if($account == ""){
             $admin = false;
         }else{
@@ -154,6 +155,7 @@ class pictureControler
 
         $view = Twig::fromRequest($request);
         return $view->render($response, 'gallery.twig', [
+            "tags"=>$tags,
             "admin" =>$admin,
             "account" => $account,
             "id" => $gallery->getIdGallery(),

@@ -62,6 +62,10 @@ class gallery
         return $this->users;
     }
 
+    public function getTags(){
+        return $this->tags;
+    }
+
     public function __toString()
     {
         return $this->name_gallery;

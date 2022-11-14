@@ -38,6 +38,12 @@
 						<label>Date de création :
 							{{date}}</label>
 					</div>
+					<div class="tags">
+						<label>Tags :</label>
+						{% for tag in tags %}
+							<label>{{tag.getTag()}}</label>
+						{% endfor %}
+					</div>
 					<div class="elements">
 						<label>{{numbPic}}
 							élément/s</label>
