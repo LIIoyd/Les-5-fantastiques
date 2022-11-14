@@ -89,6 +89,7 @@ $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
     }
 });
 
+
 $app->get('/addOwner/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
@@ -97,7 +98,20 @@ $app->get('/addOwner/{id_gallery}', function ($request, $response, $args) {
             'id' => $args['id_gallery'],
         ]);
     } else {
-        return $view->render($response, 'index.twig', [
+        return $view->render($response, 'about.twig', [
+            'account' => "",
+        ]);
+    }
+});
+
+$app->get('/aboutMe', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    if (isset($_SESSION["username"])) {
+        return $view->render($response, 'about.twig', [
+            'account' => $_SESSION["username"],
+        ]);
+    } else {
+        return $view->render($response, 'about.twig', [
             'account' => "",
         ]);
     }

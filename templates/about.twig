@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+        <div class="textAbout">  
+            <h1>A propos</h1>
+            <h3>Présentation du projet</h3>
+            <p>Bienvenu sur <strong>Painterest</strong>,<br> une application permettant d'avoir des galeries et d'y ajouter des photos.</p>
+            <p>Ce site à été réaliser en 5 jours, du <strong>07/11</strong> au <strong>14/11</strong> durant des scéances d'Atelier</p>
+            <h3>Diagrammes et maquettes</h3>
+            <p>Diagramme des cas d'utilisations</p>
+            <div class"image">
+			    <img class="diag" src="/media/About/Cas-Utilisation_Leblanc_Bourlon_Jarosz_Blanchard_Pfluger.png">
+            </div>
+            <p>Schéma relationnel</p>
+            <div class"image">
+			    <img class="diag" src="/media/About/schema_relationnel.png">
+            </div>
+            <p>Diagramme de classe</p>
+            <div class"image">
+			    <img class="diag" src="/media/About/Diagramme-Classe_Leblanc_Bourlon_Jarosz_Blanchard_Pfluger.png">
+            </div>
+            <h3>Comptes test :</h3>
+            <p>Identifiant / Mots de passe :</p>
+            <p><i>admin</i>|<i>admin</i></p>
+            <p><i>florianFerbach</i>|<i>coucou</i></p>
+            <p><i>geromeCanals</i>|<i>test</i></p>
+        </div>
+    </body>
+
+    {% include 'footer.twig' %}
+
+</html>
