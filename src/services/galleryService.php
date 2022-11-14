@@ -5,6 +5,7 @@ namespace App\services;
 use Doctrine\ORM\EntityManager;
 use App\models\gallery;
 use Psr\Log\LoggerInterface;
+use App\models\picture;
 
 final class galleryService
 {
@@ -93,15 +94,25 @@ final class galleryService
         $this->em->flush();
 
         $this->logger->info("La galerie a été modifié");
-        echo ("La galerie a été modifié");
 
         return  $reserch;
     }
 
     public function deleteGallery($gallery){
-        $repo = $this->em->getRepository(picture::class);
-        $gal = $repo->find($gallery);
+        $repo = $this->em->getRepository(gallery::class);
+        $gal = $repo->findOneBy(
+            array('id_gallery' => $gallery)
+        );
+        $repository = $this->em->getRepository(picture::class);
+
+        $products = $repository->findBy(
+          ['id_gallery' => $gallery],
+        );
+        
         if($gal !== null){
+            foreach($products as $product){
+                $this->em->remove($product);
+            }
             $this->em->remove($gal);
             $this->em->flush();
             $this->logger->info("Une image a été supprimée");
