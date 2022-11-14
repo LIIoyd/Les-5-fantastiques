@@ -149,7 +149,14 @@ class pictureControler
         }
 
         $parPage = 10;
-        $pages = ceil(count($pictures) / $parPage);
+        $nbPicture =count($pictures);
+        if($nbPicture <= 0){
+            $nbPicture = 1;
+        }
+        $pages = ceil($nbPicture/ $parPage);
+        if($pages == 0){
+            $pages = 1;
+        }
         $premier = ($currentPage * $parPage) - $parPage;
 
         $tabResPicture = [];
