@@ -9,6 +9,12 @@
     background-color: rgba(0, 0, 0, 0.2);
     font-size: 5em;
   }
+  button:hover{
+    cursor: pointer;
+  }
+  *:disabled:hover{
+    cursor: not-allowed;
+  }
   img {
     max-width: 100%;
     max-height: 100%;
