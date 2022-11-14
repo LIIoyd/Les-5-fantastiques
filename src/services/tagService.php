@@ -16,6 +16,15 @@ final class tagService
         $this->logger = $logger;
     }
 
+    public function getTag($name_tag){
+        $this->logger->info("Recherche d'un tag");
+        $repo = $this->em->getRepository(tag::class);
+        $tag = $repo->findOneBy(
+            array('name_tag' => $name_tag)
+        );
+        return $tag;
+    }
+
     public function newtag($name_tag , $Pictures){
             $tag = $this->getTag($name_tag);
             if($tag !== null){
