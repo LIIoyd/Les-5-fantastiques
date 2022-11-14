@@ -77,11 +77,13 @@ $app->get('/addGallery', function ($request, $response, $args) {
 
 $app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
 
+
 $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'modifyGallery.twig', [
-            'account' => " : " . $_SESSION["username"],
+            'account' => $_SESSION["username"],
+            'id' => $args['id_gallery'],
         ]);
     } else {
         return $view->render($response, 'index.twig', [

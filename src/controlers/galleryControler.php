@@ -92,16 +92,16 @@ class galleryControler
   {
     $idGallery = $args['id_gallery'];
 
+    echo $idGallery;
+
     $title = $_POST['titleGalerie'];
     $description = $_POST['descriptionGalerie'];
     $access = $_POST['drone'];
-    $tag = $_POST['tags'];
-    $tagTab = explode(",", $tag);
 
     $this->galleryService->modifyGallery($idGallery, $title, $access, $description);
 
     return $this->view->render($response, 'modifyGallery.twig', [
-      'ida' => $idGallery,
+      'id' => $idGallery,
       'account' => $_SESSION["username"],
       'resultMessage' => "La galerie vient d'être modifié.",
     ]);

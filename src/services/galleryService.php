@@ -92,7 +92,7 @@ final class galleryService
         $this->em->persist($reserch);
         $this->em->flush();
 
-        $this->logger->info("La galerie a été modifié déjà vous ueghbei before");
+        $this->logger->info("La galerie a été modifié");
         echo ("La galerie a été modifié");
 
         return  $reserch;
