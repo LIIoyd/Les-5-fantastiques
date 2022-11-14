@@ -40,6 +40,10 @@
 				<div id="mygallery">
 					 {% for image in images %}
 					 	<div class="image">
+							<form class="suppimage" action="/gallery/{{id}}" method="post">
+									<input  type="hidden" name="pictureId"  value="{{image.getIdPicture()}}"/>
+									<input type="submit" class="add" value="x">
+							</form>
 							<img src="/{{image.getLink()}}">
 							<p class="titleImage">{{image.getTitle()}}</p>
 						</div>
