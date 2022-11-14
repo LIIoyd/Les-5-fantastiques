@@ -252,6 +252,12 @@ html {
   background: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+.formCenter section {
+  padding-bottom: 10px;
+}
+.formCenter section fieldset div {
+  margin-left: 10px;
+}
 
 /* Full-width inputs */
 input[type=text],
@@ -448,6 +454,7 @@ input[type=password] {
   max-width: 100%;
   max-height: 100%;
 }
+
 #myAccount {
   padding: 2%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -542,7 +549,6 @@ footer {
 .pagination_bar .unDiv .pagination .selected {
   background-color: black;
   color: white;
-
 }
 
 /*# sourceMappingURL=master.css.map */

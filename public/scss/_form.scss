@@ -69,6 +69,15 @@ $padding_Form: 20px !default;
     border: 1px solid #f1f1f1;
     background: #fff;
     box-shadow: 0 0 $padding_Form 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    section {
+        fieldset {
+            div {
+                    margin-left: 10px;
+            }
+        }
+        padding-bottom: 10px;
+    }
 }
 
 /* Full-width inputs */
