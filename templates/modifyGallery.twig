@@ -15,19 +15,26 @@
 			</h1>
 
 			<p id="resultMessageUpload">{{resultMessage}}</p>
-			<form class="retpir" action="/gallery/{{id}}" method="get">
-				<input type="submit" value="retour a la gallery">
-			</form>
+			<div class="buttons">
+				<form class="retpir" action="/gallery/{{id}}" method="get">
+					<input type="submit" value="Retour à la galerie">
+				</form>
+			</div>
+
 			<form class="content" action="/modifyGallery/{{id}}" method="post" enctype="multipart/form-data">
 				<label>
-					<h2><b>Titre de la galerie</b></h2>
+					<h2>
+						<b>Titre de la galerie</b>
+					</h2>
 				</label>
 
 				<input type="text" placeholder="Titre de la galerie" name="titleGalerie">
 				<section>
 					<fieldset>
 						<legend>
-							<h2><b>Selectionne l'accès de la galerie :</b></h2>
+							<h2>
+								<b>Selectionne l'accès de la galerie :</b>
+							</h2>
 						</legend>
 
 						<div>
@@ -43,12 +50,16 @@
 				</section>
 
 				<label>
-					<h2><b>Description</b></h2>
+					<h2>
+						<b>Description</b>
+					</h2>
 				</label>
 				<input type="text" placeholder="Description" name="descriptionGalerie">
 
 				<label>
-					<h2><b>Tags</b></h2>
+					<h2>
+						<b>Tags</b>
+					</h2>
 				</label>
 				<input type="text" placeholder="Tags" name="tags">
 
@@ -57,9 +68,9 @@
 				</section>
 			</form>
 
-			<form  class="content" action="/" method="post">
+			<form class="content" action="/" method="post">
 				<section>
-					<input  type="hidden" name="galleryId"  value="{{id}}"/>
+					<input type="hidden" name="galleryId" value="{{id}}"/>
 					<input class="sub" type="submit" id='submit' value='Supprimer la galerie'>
 				</section>
 			</form>

@@ -16,6 +16,10 @@
         position: absolute;
         right: 0;
         top: 0;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
@@ -41,6 +45,28 @@
         grid-row: 1;
         display: flex;
         justify-content: space-evenly;
+
+        input {
+            background-color: darkslategray;
+            padding: 5px;
+            color : white;
+
+            &:hover {
+                background-color: gray;
+            }
+        }
+
+        form {
+            input {
+                background-color: darkslategray;
+                padding: 5px;
+                color : white;
+
+                &:hover {
+                    background-color: gray;
+                }
+            }
+        }        
     }
 
     .description {

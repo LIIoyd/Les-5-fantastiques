@@ -16,12 +16,13 @@ $padding_Form: 20px !default;
         text-shadow: 0px 0px 10px white;
     }
 
-    h2, label {
-      color: white;
+    h2,
+    label {
+        color: white;
     }
 
     form {
-      background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0, 0, 0, 0.6);
 
         section {
             // padding-top: 20px;
@@ -30,6 +31,22 @@ $padding_Form: 20px !default;
     }
 
 }
+
+.retpir {
+    input {
+        background-color: darkslategray;
+        padding: 5px;
+        color: white;
+        margin-top: 10px;
+        margin-left: 10px;
+
+        &:hover {
+            background-color: gray;
+        }
+    }
+
+}
+
 
 .containerForm {
     padding-top: 10%;
@@ -43,8 +60,6 @@ $padding_Form: 20px !default;
         padding-bottom: 10px;
     }
 }
-
-
 
 /* Bordered form */
 .formCenter {
@@ -68,7 +83,7 @@ input[type=password] {
 }
 
 /* Set a style for all buttons */
-.sub{
+.sub {
     background-color: #53af57;
     color: white;
     padding: 14px $padding_Form;
