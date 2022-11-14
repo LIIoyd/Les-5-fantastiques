@@ -91,6 +91,7 @@ $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
     }
 });
 
+
 $app->get('/addOwner/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
@@ -99,7 +100,20 @@ $app->get('/addOwner/{id_gallery}', function ($request, $response, $args) {
             'id' => $args['id_gallery'],
         ]);
     } else {
-        return $view->render($response, 'index.twig', [
+        return $view->render($response, 'about.twig', [
+            'account' => "",
+        ]);
+    }
+});
+
+$app->get('/aboutMe', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    if (isset($_SESSION["username"])) {
+        return $view->render($response, 'about.twig', [
+            'account' => $_SESSION["username"],
+        ]);
+    } else {
+        return $view->render($response, 'about.twig', [
             'account' => "",
         ]);
     }
@@ -140,9 +154,9 @@ $app->get('/getUsers', \App\controlers\galleryControler::class . ':getUsers');
 
 $app->get('/picture', \App\controlers\pictureControler::class . ':start');
 
-$app->get('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':displayGalleryPic');
+$app->get('/gallery/{id_gallery}[/{page}]', \App\controlers\pictureControler::class . ':displayGalleryPic');
 
-$app->post('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':deletePicture');
+$app->post('/gallery/{id_gallery}[/{page}]', \App\controlers\pictureControler::class . ':deletePicture');
 
 $app->get('/gallery/{id_gallery}/picture/{id_picture}', \App\controlers\pictureControler::class . ':displayPicture');
 

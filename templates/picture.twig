@@ -18,6 +18,9 @@
 						<h1>{{title}}</h1>
 					</div>
 					<div class="buttons">
+						<form class="retpir" action="/gallery/{{id}}" method="get">
+							<input type="submit" value="Retour à la galerie">
+						</form>
 						<div class="elements">
 							<label>Width : {{width}}</label><br>
 							<label>Height : {{height}}</label>
@@ -52,5 +55,7 @@
 		</div>
 
 	</body>
+
+	{% include 'footer.twig' %}
 
 </html>

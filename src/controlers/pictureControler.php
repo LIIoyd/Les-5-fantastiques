@@ -141,6 +141,41 @@ class pictureControler
 
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
 
+
+        if(isset($args['page'])){
+            $currentPage = ($args['page']);
+        }else{
+            $currentPage = 1;
+        }
+
+        $parPage = 10;
+        $nbPicture =count($pictures);
+        if($nbPicture <= 0){
+            $nbPicture = 1;
+        }
+        $pages = ceil($nbPicture/ $parPage);
+        if($pages == 0){
+            $pages = 1;
+        }
+        $premier = ($currentPage * $parPage) - $parPage;
+
+        $tabResPicture = [];
+
+        for($i = $premier; ($i < count($pictures)) && ($i <  $currentPage + $parPage -1) ; $i++){
+            $tabResPicture[$i] = $pictures[$i];
+        }
+
+        $previous = $currentPage - 1;
+        if($previous < 1){
+            $previous = 1;
+        }
+        $next = $currentPage + 1;
+        if($next > $pages){
+            $next = $pages;
+        }
+
+
+
         $tags = $gallery->getTags()->getValues();
         if($account == ""){
             $admin = false;
@@ -165,7 +200,11 @@ class pictureControler
             "descr" => $gallery->getDescriptionGallery(),
             "createur" => $userPic->getNameUser(),
             "date" => $gallery->getDateCreat()->format('d-m-Y'),
-            "images" => $pictures,
+            "images" => $tabResPicture,
+            "pages" => $pages,
+            "nextPage" => $next,
+            "previousPage" => $previous,
+            "currentPage" => $currentPage,
             "numbPic" => count($pictures)
         ]);
     }
@@ -195,6 +234,7 @@ class pictureControler
         $suiv = "hidden";
       }
       return $view->render($response, 'picture.twig', [
+        "id" => $args['id_gallery'],
         "title" => $stuff[2],
         "descr" => $stuff[5],
         "height" => $stuff[3],

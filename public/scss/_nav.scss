@@ -11,6 +11,8 @@ $fontBasic: 20px !default;
     width: 150px;
 }
 
+
+
 .menuNav {
     font-size: $fontBasic;
     height: auto;
@@ -37,6 +39,11 @@ $fontBasic: 20px !default;
                     visibility: visible;
                 }
             }
+        }
+
+        .logo{
+            padding: 0;
+            margin: 0;
         }
     }
 
