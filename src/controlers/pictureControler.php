@@ -141,6 +141,7 @@ class pictureControler
             "createur" => $user->getNameUser(),
             "date" => $gallery->getDateCreat()->format('d-m-Y'),
             "images" => $pictures,
+            "numbPic" => count($pictures)
         ]);
     }
 

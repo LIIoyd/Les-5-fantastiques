@@ -20,7 +20,7 @@
 					<div class="buttons">
 						<input type="button" value="partager la galerie">
 						<input type="button" value="modifier la galerie">
-						<form action="/addImage/{{id}}" method="get">
+						<form class="addimage" action="/addImage/{{id}}" method="get">
 							<input type="submit" class="add" value="+">
 						</form>
 					</div>
@@ -33,7 +33,7 @@
 						<label>Date de création : {{date}}</label>
 					</div>
 					<div class="elements">
-						<label>20 élément/s</label>
+						<label>{{numbPic}} élément/s</label>
 					</div>
 				</div>
 
@@ -41,6 +41,7 @@
 					 {% for image in images %}
 					 	<div class="image">
 							<img src="/{{image.getLink()}}">
+							<p class="titleImage">{{image.getTitle()}}</p>
 						</div>
    					 {% endfor %}
 				</div>

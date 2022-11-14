@@ -2,6 +2,11 @@
     border-radius: 50%;
 }
 
+.titleImage{
+    text-align: center;
+    color: white;
+}
+
 #infgallery {
     padding: 2%;
     background-color: rgba(0, 0, 0, 0.8);
@@ -22,6 +27,8 @@
         text-align: right;
         grid-column: 2;
         grid-row: 1;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     .description {
@@ -50,12 +57,15 @@
     justify-content: center;
 
     .image {
+        background-color: rgba(0, 0, 0, 0.3);
         margin: 2%;
+        padding: 1%;
         img {
-            max-width: 300px;
-            max-height: 300px;
-            min-width: 100px;
-            min-height: 100px;
+            aspect-ratio: auto;
+            max-width: 400px;
+            max-height: 400px;
+            min-width: 200px;
+            min-height: 200px;
         }
     }
 }
