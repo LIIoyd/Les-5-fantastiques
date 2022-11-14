@@ -24,12 +24,6 @@ class pictureControler
     }
 
 
-    public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-    {
-        echo " image";
-        return $this->view->render($response, 'app.twig');
-    }
-
     public function addTag($picture,$tagTab){
         if(count($tagTab) > 5){
             return "erreur trop de tags" ;

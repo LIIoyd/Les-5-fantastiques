@@ -468,6 +468,9 @@ input[type=password] {
   text-align: center;
   justify-content: baseline;
 }
+.textAbout p {
+  margin: 10px;
+}
 .textAbout .diag {
   aspect-ratio: auto;
   max-width: 80%;
