@@ -199,26 +199,6 @@ class galleryControler
     ]);
   }
 
-  public function getGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-  {
-    $gal = $this->galleryService->getGallery('photo mignon');
-    echo $gal;
-    var_dump($gal->getUsers());
-    return $this->view->render($response, 'app.twig');
-  }
-
-  public function getUsers(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-  {
-    $gal = $this->galleryService->getGallery('test');
-    $galRes = $gal->getUsers();
-    $text = "Nom de galerie: " . $gal->getNameGallery() . " <br> Users : ";
-    foreach ($galRes as $galleries) {
-      $text .= " " . $galleries;
-    }
-    echo $text;
-    return $this->view->render($response, 'app.twig');
-  }
-
   public function deleteGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
     $idGallery = $_POST['galleryId'];
