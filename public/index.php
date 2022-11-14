@@ -131,9 +131,9 @@ $app->get('/getUsers', \App\controlers\galleryControler::class . ':getUsers');
 
 $app->get('/picture', \App\controlers\pictureControler::class . ':start');
 
-$app->get('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':displayGalleryPic');
+$app->get('/gallery/{id_gallery}[/{page}]', \App\controlers\pictureControler::class . ':displayGalleryPic');
 
-$app->post('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':deletePicture');
+$app->post('/gallery/{id_gallery}[/{page}]', \App\controlers\pictureControler::class . ':deletePicture');
 
 $app->get('/gallery/{id_gallery}/picture/{id_picture}', \App\controlers\pictureControler::class . ':displayPicture');
 

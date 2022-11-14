@@ -141,6 +141,34 @@ class pictureControler
 
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
 
+
+        if(isset($args['page'])){
+            $currentPage = ($args['page']);
+        }else{
+            $currentPage = 1;
+        }
+
+        $parPage = 1;
+        $pages = ceil(count($pictures) / $parPage);
+        $premier = ($currentPage * $parPage) - $parPage;
+
+        $tabResPicture = [];
+
+        for($i = $premier; ($i < count($pictures)) && ($i <  $currentPage + $parPage -1) ; $i++){
+            $tabResPicture[$i] = $pictures[$i];
+        }
+
+        $previous = $currentPage - 1;
+        if($previous < 1){
+            $previous = 1;
+        }
+        $next = $currentPage + 1;
+        if($next > $pages){
+            $next = $pages;
+        }
+
+
+
         $tags = $gallery->getTags()->getValues();
         if($account == ""){
             $admin = false;
@@ -165,7 +193,11 @@ class pictureControler
             "descr" => $gallery->getDescriptionGallery(),
             "createur" => $userPic->getNameUser(),
             "date" => $gallery->getDateCreat()->format('d-m-Y'),
-            "images" => $pictures,
+            "images" => $tabResPicture,
+            "pages" => $pages,
+            "nextPage" => $next,
+            "previousPage" => $previous,
+            "currentPage" => $currentPage,
             "numbPic" => count($pictures)
         ]);
     }

@@ -68,6 +68,23 @@
 						</div>
 					{% endfor %}
 				</div>
+				<ul>
+					{% if pages > 1 %}
+						<form class="previousImage" action="/gallery/{{id}}/{{previousPage}}" method="get">
+							<input type="submit" class="" value="Previous">
+						</form>
+					{% endif %}
+					{% for i in range(1,pages) %}
+						<form class="imageNumber" action="/gallery/{{id}}/{{i}}" method="get">
+							<input type="submit" class="" value="{{i}}">
+						</form>
+					{% endfor %}
+					{% if currentPage < pages %}
+						<form class="nextImage" action="/gallery/{{id}}/{{nextPage}}" method="get">
+							<input type="submit" class="" value="nextPage">
+						</form>
+					{% endif %}
+				</ul>
 			</div>
 		</div>
 
