@@ -82,6 +82,7 @@ class galleryControler
 
     $newGallery = $this->galleryService->newGallery($title, $access, $description, $userId);
     $mesTag = $this->addTagGallery($newGallery, $tagTab);
+    $mesUsers = $this->userControler->addGalleries($user, $newGallery);
     return $this->view->render($response, 'uploadGallery.twig', [
       'account' => $_SESSION["username"],
       'resultMessage' => "La galerie vient d'être créée.",
@@ -179,5 +180,12 @@ class galleryControler
     }
     echo $text;
     return $this->view->render($response, 'app.twig');
+  }
+
+  public function deleteGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $idGallery = $args['id_gallery'];
+    $this->galleryService->deleteGallery($idGallery);
+    return $this->getAllPublicGalleries($request, $response, $args);
   }
 }

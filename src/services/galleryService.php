@@ -70,10 +70,10 @@ final class galleryService
         $reserch = $this->getGallery($name);
         if ($reserch == null) {
             $newgallery = new gallery($name, $acces_type, $description_gallery, $id_creator);
-            return $newgallery;
             $this->em->persist($newgallery);
             $this->em->flush();
             $this->logger->info("Une galerie à été créer");
+            return $newgallery;
         } else {
             $this->logger->info("La galerie existe déjà");
         }
@@ -96,5 +96,17 @@ final class galleryService
         echo ("La galerie a été modifié");
 
         return  $reserch;
+    }
+
+    public function deleteGallery($gallery){
+        $repo = $this->em->getRepository(picture::class);
+        $gal = $repo->find($gallery);
+        if($gal !== null){
+            $this->em->remove($gal);
+            $this->em->flush();
+            $this->logger->info("Une image a été supprimée");
+            return "image supprimée";
+        }
+        return "erreur de suppression";
     }
 }

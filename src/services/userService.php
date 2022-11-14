@@ -61,4 +61,16 @@ final class userService
         $this->em->persist($newuser);
         $this->em->flush();
     }
+
+    public function addGalleries($user, $gallery)
+    {
+        $user = $this->getUser($user);
+        if($user !== null){
+            $user->addGallery($gallery);
+            $this->em->persist($user);
+            $this->em->flush();
+            return "galerie ajouté a l utilisateur";
+        }
+        return "utilisateur inconnu";
+    }
 }

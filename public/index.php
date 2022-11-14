@@ -94,6 +94,8 @@ $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
 
 $app->get('/home', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
 
+$app->post('/home', \App\controlers\galleryControler::class . ':deleteGallery');
+
 $app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
 
 $app->post('/addImage/{id_gallery}', \App\controlers\pictureControler::class . ':addImage');
