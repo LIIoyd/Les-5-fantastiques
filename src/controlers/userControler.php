@@ -82,4 +82,8 @@ class userControler
     public function getIdByName($name) {
         return $this->userService->getUser($name)->getIdUser();
     }
+
+    public function addGalleries($user,$Galleryname){
+        return $this->userService->addGalleries($user,$Galleryname);
+    }
 }

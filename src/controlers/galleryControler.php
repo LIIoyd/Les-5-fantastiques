@@ -82,6 +82,7 @@ class galleryControler
 
     $newGallery = $this->galleryService->newGallery($title, $access, $description, $userId);
     $mesTag = $this->addTagGallery($newGallery, $tagTab);
+    $mesUsers = $this->userControler->addGalleries($user, $newGallery);
     return $this->view->render($response, 'uploadGallery.twig', [
       'account' => $_SESSION["username"],
       'resultMessage' => "La galerie vient d'être créée.",
@@ -91,12 +92,18 @@ class galleryControler
   public function modifyGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
     $idGallery = $args['id_gallery'];
-
-    echo $idGallery;
+    $access = $_POST['drone'];
 
     $title = $_POST['titleGalerie'];
     $description = $_POST['descriptionGalerie'];
-    $access = $_POST['drone'];
+
+    if($title == "") {
+      $title = $this->galleryService->getGalleryId($idGallery)->getNameGallery();
+    }
+
+    if($description == "") {
+      $title = $this->galleryService->getGalleryId($idGallery)->getDescriptionGallery();
+    }
 
     $this->galleryService->modifyGallery($idGallery, $title, $access, $description);
 
@@ -145,7 +152,7 @@ class galleryControler
   public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
     if (isset($_SESSION["username"])) {
-      $account = " : " . $_SESSION["username"];
+      $account = $_SESSION["username"];
     } else {
       $account = "";
     }
@@ -179,5 +186,12 @@ class galleryControler
     }
     echo $text;
     return $this->view->render($response, 'app.twig');
+  }
+
+  public function deleteGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $idGallery = $_POST['galleryId'];
+    $this->galleryService->deleteGallery($idGallery);
+    return $this->getAllPublicGalleries($request, $response, $args);
   }
 }

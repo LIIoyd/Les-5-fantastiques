@@ -75,9 +75,6 @@ $app->get('/addGallery', function ($request, $response, $args) {
     }
 });
 
-$app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
-
-
 $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
@@ -92,7 +89,9 @@ $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
     }
 });
 
-$app->get('/home', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
+$app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
+
+$app->post('/', \App\controlers\galleryControler::class . ':deleteGallery');
 
 $app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
 

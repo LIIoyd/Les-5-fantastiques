@@ -17,6 +17,7 @@
 					<div class="title">
 						<h1>{{title}}</h1>
 					</div>
+					{% if admin == true %}
 					<div class="buttons">
 						<input type="button" value="partager la galerie">
 						<form action="/modifyGallery/{{id}}" method="get">
@@ -26,6 +27,7 @@
 							<input type="submit" class="add" value="+">
 						</form>
 					</div>
+					{% endif %}
 					<div class="description">
 						<p>Description :</p>
 						<p>{{descr}}</p>
@@ -35,6 +37,12 @@
 							{{createur}}</label><br>
 						<label>Date de création :
 							{{date}}</label>
+					</div>
+					<div class="tags">
+						<label>Tags :</label>
+						{% for tag in tags %}
+							<label>{{tag.getTag()}}</label>
+						{% endfor %}
 					</div>
 					<div class="elements">
 						<label>{{numbPic}}
