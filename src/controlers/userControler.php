@@ -27,7 +27,8 @@ class userControler
                 $reserch = $this->userService->getUser(($_POST['username']));
                 if ($reserch == null) {
                     $message = "Compte crée.";
-                    $user = $this->userService->newUser($_POST['username'], password_hash($_POST['password'], PASSWORD_DEFAULT));
+                    $sexe_user = $_POST['sexeU'];
+                    $user = $this->userService->newUser($_POST['username'], password_hash($_POST['password'], PASSWORD_DEFAULT), $sexe_user);
                     return $this->view->render($response, 'signIn.twig');
                 } else {
                     $message = "L'utilisateur existe déjà.";
@@ -87,4 +88,41 @@ class userControler
     {
         return $this->userService->addGalleries($user, $gallery);
     }
+ 
+    public function displayAccount(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
+        if (isset($_SESSION["username"])) {
+            $account = $_SESSION["username"];
+        } else {
+            $account = "";
+        }
+
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'myAccount.twig', [
+            "sexeUser" => "",
+            "account" => $account,
+            "nameUser" => $account,
+        ]);
+    }
+
+    public function modifyNameAccount(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+        $newName = $_POST['userN'];
+        $account = $_SESSION["username"];
+        
+        $this->userService->changeName($account, $newName);
+
+        return $this->displayAccount($request, $response, $args);
+    }
+
+    public function modifySexeAccount(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+        $newSexe = $_POST['sexeU'];
+        $account = $_SESSION["username"];
+        
+        $this->userService->changeSexe($account, $newSexe);
+
+        return $this->displayAccount($request, $response, $args);
+    }
+
+    
+
+
 }

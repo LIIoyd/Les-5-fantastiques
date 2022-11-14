@@ -48,6 +48,8 @@ $app->get('/signIn', function ($request, $response, $args) {
     }
 });
 
+
+
 $app->get('/addImage/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
@@ -116,6 +118,13 @@ $app->get('/aboutMe', function ($request, $response, $args) {
         ]);
     }
 });
+
+
+$app->get('/myAccount', \App\controlers\userControler::class . ':displayAccount');
+
+$app->post('/myAccount', \App\controlers\userControler::class . ':modifyNameAccount');
+
+$app->post('/changeSexe', \App\controlers\userControler::class . ':modifySexeAccount');
 
 $app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
 

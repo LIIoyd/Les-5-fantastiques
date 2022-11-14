@@ -29,17 +29,21 @@ final class user{
     #[Column(type: 'string', nullable: false)]
     private string $password_user;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $sexe_user;
+
     #[ManyToMany(targetEntity: 'gallery', inversedBy:'users', cascade:["persist"])]
     #[JoinTable(name: 'userGallery')]
     #[JoinColumn(name: 'id_user', referencedColumnName: 'id_user')]
     #[InverseJoinColumn(name: 'id_gallery' , referencedColumnName: 'id_gallery')]
     private Collection $galleries;
 
-    public function __construct($nameUser,$passwordUser)
+    public function __construct($nameUser,$passwordUser,$sexeUser)
     {
         $this->galleries = new ArrayCollection();
         $this->name_user = $nameUser;
         $this->password_user = $passwordUser; 
+        $this->sexe_user = $sexeUser;
     } 
 
     public function addGallery(gallery $gallery): void
@@ -68,6 +72,11 @@ final class user{
         return $this->name_user;
     }
 
+    public function getSexeUser(): string
+    {
+        return $this->sexe_user;
+    }
+
     public function getPasswordUser(): string
     {
         return $this->password_user;
@@ -86,5 +95,10 @@ final class user{
     public function setPasswordUser($passwordUser)
     {
         $this->password_user = $passwordUser;
+    }
+
+    public function setSexeUser($sexeUser)
+    {
+        $this->sexe_user = $sexeUser;
     }
 }
