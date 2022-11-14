@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+		<div class="containerForm">
+
+			<form class="formCenter" action="/addOwner/{{id}}" method="POST">
+				<h1>Partager le tableau</h1>
+
+				<p class="response">
+					{{resultMessage}}
+				</p>
+
+				<label>
+					<b>Nom d'utilisateur</b>
+				</label>
+				<input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+
+				<input class="sub" type="submit" id='submit' value='AJOUTER'>
+			</form>
+		</div>
+
+	</body>
+
+</html>

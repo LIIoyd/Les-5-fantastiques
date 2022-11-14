@@ -1,0 +1,99 @@
+$space-arround-content: 2%;
+$gallery-size: 250px;
+
+body{
+  min-width: 450px;
+}
+
+html {
+  width: 99%;
+  height: 92%;
+}
+
+.content {
+  width: calc(100% - (2 * $space-arround-content));
+  min-height: calc(100% - (2 * $space-arround-content));
+  padding: $space-arround-content;
+}
+
+.galleries {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 0px;
+
+  padding-left: calc($gallery-size / 10);
+  padding-right: calc($gallery-size / 10);
+
+  padding-bottom: calc($gallery-size / 5);
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  h1 {
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 0;
+  }
+  h2 {
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em;
+  }
+}
+
+.gallery {
+  width: $gallery-size;
+  height: calc($gallery-size * 1.15);
+  border: solid 1px black;
+  margin-left: calc($gallery-size / 10);
+  margin-right: calc($gallery-size / 10);
+  margin-top: calc($gallery-size / 5);
+  margin-bottom: 0;
+  display: grid;
+  border-radius: 30% 5%;
+  overflow: hidden;
+  grid-template-rows: calc(100% - $gallery-size * 0.15) calc($gallery-size * 0.15);
+  div {
+    // background-color: rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    p {
+      text-shadow: black 0px 0px 10px ;
+      color: white;
+      margin: 0;
+      vertical-align: bottom;
+      align-self: flex-end;
+      font-weight: bold;
+      width: 80%;
+      text-align: right;
+      margin-right: 17%;
+      margin-left: 3%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  img {
+    width: $gallery-size;
+    height: $gallery-size;
+    border: solid black 1px;
+  }
+}
+
+.gallery:hover {
+  cursor: pointer;
+}
+
+.createGallery {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
+}

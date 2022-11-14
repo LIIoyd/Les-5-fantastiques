@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+		<div class="containerFormGallery">
+			<h1>
+				<b>Nouvelle galerie</b>
+			</h1>
+
+			<p id="resultMessageUpload">{{resultMessage}}</p>
+
+			<form class="content" action="/newGallery" method="post" enctype="multipart/form-data">
+				<label>
+					<h2><b>Titre de la galerie</b></h2>
+				</label>
+
+				<input type="text" placeholder="Titre de la galerie" name="titleGalerie" required>
+				<section>
+					<fieldset>
+						<legend>
+							<h2><b>Selectionne l'accès de la galerie :</b></h2>
+						</legend>
+
+						<div>
+							<input type="radio" id="public" name="drone" value="public" checked>
+							<label for="public">Public</label>
+						</div>
+
+						<div>
+							<input type="radio" id="private" name="drone" value="private">
+							<label for="private">Privé</label>
+						</div>
+					</fieldset>
+				</section>
+
+				<label>
+					<h2><b>Description</b></h2>
+				</label>
+				<input type="text" placeholder="Description" name="descriptionGalerie" required>
+
+				<label>
+					<h2><b>Tags</b></h2>
+				</label>
+				<input type="text" placeholder="Tags" name="tags">
+
+				<section>
+					<input class="sub" type="submit" id='submit' value='Créer galerie'>
+				</section>
+			</form>
+		</div>
+
+	</body>
+
+	{% include 'footer.twig' %}
+
+</html>

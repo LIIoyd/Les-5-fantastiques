@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<nav class="menuNav">
+		<ul class="menuUl">
+			<div>
+				<li>
+          <a class="logo" href="/aboutMe"><img class="picture" src="/media/logo.png"></a>
+        </li>
+				<li>
+					<a href="/">Accueil</a>
+				</li>
+				<li>
+					{% if account == "" %}
+						<a href="/signIn">Mes Galeries</a>
+					{% else %}
+						<a href="/myGalleries">Mes Galeries</a>
+					{% endif %}
+				</li>
+        <li>
+          <form class="" action="/search" method="post">
+            <input type="text" name="tag" placeholder="tag à chercher">
+            <button type="submit">🔍</button>
+          </form>
+        </li>
+			</div>
+			<div>
+				<li class="account">
+					{% if account == "" %}
+						<a href="#">Compte</a>
+					{% else %}
+						<a href="#">{{account}}</a>
+					{% endif %}
+					<ul>
+						{% if account == "" %}
+							<li>
+								<a href="/signIn">Connexion</a>
+							</li>
+							<li>
+								<a href="/signUp">Inscription</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="/myAccount">Mon compte</a>
+							</li>
+							<li>
+								<a href="/logout">Déconnexion</a>
+							</li>
+						{% endif %}
+					</ul>
+				</li>
+			</div>
+
+			<video autoplay loop muted>
+				<source src="https://static.videezy.com/system/resources/previews/000/008/153/original/Moving_Floor_V1_01.mp4" type="video/mp4">
+			</video>
+
+		</ul>
+	</nav>
+</html>

@@ -1,0 +1,28 @@
+.textAbout{
+    margin: 2%;
+    background-color: rgba(255, 255, 255, 0.5);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: baseline;
+
+    p{
+        margin: 10px;
+    }
+
+    .diag {
+        aspect-ratio: auto;
+        max-width: 80%;
+        max-height: 80%;
+        min-width: 200px;
+        min-height: 200px;
+    }
+}
+
+footer{
+    margin: 5px;
+    min-height: 100px;
+    text-align: center;
+    justify-content: center;
+}

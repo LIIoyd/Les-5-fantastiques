@@ -6,3 +6,4 @@
 composer.lock
 /cache/*
 /logs/*
+public/uploads/*

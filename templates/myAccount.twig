@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+		<div class="content">
+			<div id="myAccount">
+				<div>
+					<p>Nom d'utilisateur :
+						{{nameUser}}</p>
+				</div>
+				<div class="description">
+					<p>Sexe :
+						{{sexeUser}}</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="containerForm">
+
+			<form class="formCenter" action="/myAccount" method="POST">
+				<h1>Modification du nom du compte</h1>
+
+				<p class="responseMess">
+					{{responseMessage}}
+				</p>
+
+				<label>
+					<b>Nom d'utilisateur (Maximum 16 caractères)</b>
+				</label>
+				<input type="text" placeholder="Entrer le nom d'utilisateur" name="userN" maxlength="16" required>
+
+				<input class="sub" type="submit" id='submit' value='ENREGISTRER MODIFICATION'>
+			</form>
+		</div>
+
+		<div class="containerForm">
+
+			<form class="formCenter" action="/changeSexe" method="POST">
+				<h1>Modification du sexe du compte</h1>
+
+				<p class="responseMess">
+					{{responseMessage}}
+				</p>
+
+				<section>
+					<fieldset>
+						<legend>
+							<h2>
+								<b>Sexe</b>
+							</h2>
+						</legend>
+
+						<div>
+							<input type="radio" id="Feminin" name="sexeU" value="Feminin" checked>
+							<label for="Feminin">Féminin</label>
+						</div>
+
+						<div>
+							<input type="radio" id="Masculin" name="sexeU" value="Masculin">
+							<label for="Masculin">Masculin</label>
+						</div>
+
+						<div>
+							<input type="radio" id="Autre" name="sexeU" value="Autre">
+							<label for="Autre">Autre</label>
+						</div>
+					</fieldset>
+				</section>
+
+				<input class="sub" type="submit" id='submit' value='ENREGISTRER MODIFICATION'>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,563 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+video {
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.picture {
+  margin: 5px;
+  width: 40px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.account {
+  width: 150px;
+}
+
+.menuNav {
+  font-size: 20px;
+  height: auto;
+}
+.menuNav div {
+  display: flex;
+  flex-flow: row;
+}
+.menuNav ul {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  background-color: darkslategray;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.menuNav ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
+.menuNav ul li form {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.menuNav ul li form button {
+  background: none;
+  border: none;
+  font-size: 2em;
+}
+.menuNav ul .logo {
+  padding: 0;
+  margin: 0;
+}
+.menuNav li {
+  margin: 0 5px;
+  padding: 0;
+}
+.menuNav li a {
+  background-color: darkslategray;
+  color: #ffffff;
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+}
+.menuNav li a:hover {
+  color: lightgray;
+}
+.menuNav li ul {
+  width: 150px;
+  flex-direction: column;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+.menuNav li ul a {
+  background-color: darkslategray;
+}
+
+@media (max-width: 500px) {
+  .account {
+    width: 93%;
+  }
+  .menuNav {
+    font-size: 20px;
+    height: 60px;
+    background-color: darkslategray;
+    margin-bottom: 35%;
+  }
+  .menuNav div {
+    display: flex;
+    flex-flow: column;
+  }
+  .menuNav li {
+    justify-content: center;
+  }
+  .menuNav li ul {
+    flex-direction: column;
+    opacity: 0;
+    justify-content: center;
+    visibility: hidden;
+    text-align: center;
+    width: 93%;
+  }
+  .menuNav .menuUl {
+    display: flex;
+    flex-direction: column;
+    background-color: darkslategray;
+    height: auto;
+  }
+}
+body {
+  min-width: 450px;
+}
+
+html {
+  width: 99%;
+  height: 92%;
+}
+
+.content {
+  width: 96%;
+  min-height: 96%;
+  padding: 2%;
+}
+
+.galleries {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 0px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 50px;
+}
+.galleries a {
+  color: black;
+  text-decoration: none;
+}
+.galleries h1 {
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 0;
+}
+.galleries h2 {
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.gallery {
+  width: 250px;
+  height: 287.5px;
+  border: solid 1px black;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 50px;
+  margin-bottom: 0;
+  display: grid;
+  border-radius: 30% 5%;
+  overflow: hidden;
+  grid-template-rows: calc(100% - 37.5px) 37.5px;
+}
+.gallery div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.gallery div p {
+  text-shadow: black 0px 0px 10px;
+  color: white;
+  margin: 0;
+  vertical-align: bottom;
+  align-self: flex-end;
+  font-weight: bold;
+  width: 80%;
+  text-align: right;
+  margin-right: 17%;
+  margin-left: 3%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gallery img {
+  width: 250px;
+  height: 250px;
+  border: solid black 1px;
+}
+
+.gallery:hover {
+  cursor: pointer;
+}
+
+.createGallery {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url("https://cdn.iconscout.com/icon/free/png-256/add-plus-3114469-2598247.png");
+}
+
+.responseMess {
+  text-align: center;
+  color: red;
+}
+
+.containerFormGallery {
+  padding-top: 50px;
+  width: 90%;
+  margin: auto;
+  padding-bottom: 10%;
+}
+.containerFormGallery h1 {
+  padding-bottom: 20px;
+  text-shadow: 0px 0px 10px white;
+}
+.containerFormGallery h2,
+.containerFormGallery label {
+  color: white;
+}
+.containerFormGallery form {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.retpir input {
+  background-color: darkslategray;
+  padding: 5px;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.retpir input:hover {
+  background-color: gray;
+}
+
+.containerForm {
+  padding-top: 10%;
+  width: 400px;
+  margin: auto;
+}
+.containerForm h1 {
+  width: 38%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+/* Bordered form */
+.formCenter {
+  width: calc(100% - 40px);
+  padding: 20px;
+  padding-bottom: 40px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.formCenter section {
+  padding-bottom: 10px;
+}
+.formCenter section fieldset div {
+  margin-left: 10px;
+}
+
+/* Full-width inputs */
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.sub {
+  background-color: #53af57;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.sub:hover {
+  background-color: white;
+  color: #53af57;
+  border: 1px solid #53af57;
+}
+
+@media (max-width: 800px) {
+  form {
+    border: none;
+    box-shadow: none;
+  }
+}
+.add {
+  border-radius: 50%;
+}
+
+.titleImage {
+  text-align: center;
+  color: white;
+}
+
+#infgallery {
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 10px;
+  grid-auto-rows: 50px;
+  align-items: center;
+}
+#infgallery .title {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 1;
+}
+#infgallery .buttons {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: space-evenly;
+}
+#infgallery .buttons input {
+  background-color: darkslategray;
+  padding: 5px;
+  color: white;
+}
+#infgallery .buttons input:hover {
+  background-color: gray;
+}
+#infgallery .buttons form input {
+  background-color: darkslategray;
+  padding: 5px;
+  color: white;
+}
+#infgallery .buttons form input:hover {
+  background-color: gray;
+}
+#infgallery .description {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+#infgallery .create {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 4;
+}
+#infgallery .elements {
+  text-align: right;
+  grid-column: 2;
+  grid-row: 4;
+}
+#infgallery .tags {
+  text-align: left;
+  grid-column: 1;
+  grid-row: 3;
+}
+
+#mygallery {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#mygallery .image {
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 2%;
+  padding: 1%;
+  position: relative;
+}
+#mygallery .image .suppimage {
+  width: 20px;
+  background-color: none;
+  border: none;
+  position: absolute;
+  margin: 2px;
+  right: 0;
+  top: 0;
+}
+#mygallery .image .suppimage:hover {
+  cursor: pointer;
+}
+#mygallery .image .suppimage .add {
+  font-size: 17px;
+  width: 30px;
+}
+#mygallery .image img {
+  aspect-ratio: auto;
+  max-width: 400px;
+  max-height: 400px;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+@media (max-width: 700px) {
+  #infgallery {
+    grid-template-columns: repeat(2, 49%);
+    grid-auto-rows: 70px;
+  }
+  #infgallery .title {
+    text-align: center;
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  #infgallery .buttons {
+    text-align: center;
+    grid-column: 1/3;
+    grid-row: 5;
+  }
+  #infgallery .description {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  #infgallery .create {
+    text-align: left;
+    grid-column: 1;
+    grid-row: 4;
+  }
+  #infgallery .elements {
+    text-align: right;
+    grid-column: 2;
+    grid-row: 4;
+  }
+  #infgallery .tags {
+    text-align: left;
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
+.onePicture {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
+.onePicture button {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 5em;
+}
+.onePicture button:hover {
+  cursor: pointer;
+}
+.onePicture *:disabled:hover {
+  cursor: not-allowed;
+}
+.onePicture img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#myAccount {
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 10px;
+  grid-auto-rows: 50px;
+  align-items: center;
+}
+
+.textAbout {
+  margin: 2%;
+  background-color: rgba(255, 255, 255, 0.5);
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: baseline;
+}
+.textAbout p {
+  margin: 10px;
+}
+.textAbout .diag {
+  aspect-ratio: auto;
+  max-width: 80%;
+  max-height: 80%;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+footer {
+  margin: 5px;
+  min-height: 100px;
+  text-align: center;
+  justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.pagination_bar {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+}
+.pagination_bar .unDiv {
+  background: #dde1e7;
+  padding: 25px;
+  border-radius: 3px;
+  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.4509803922), 3px 3px 5px rgba(94, 104, 121, 0.288);
+}
+.pagination_bar .unDiv .pagination {
+  display: flex;
+  list-style: none;
+}
+.pagination_bar .unDiv .pagination li {
+  flex: 1;
+  margin: 0px 5px;
+  border-radius: 3px;
+  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.4509803922), 3px 3px 5px rgba(94, 104, 121, 0.288);
+}
+.pagination_bar .unDiv .pagination a {
+  font-size: 18px;
+  text-decoration: none;
+  height: 45px;
+  width: 55px;
+  display: block;
+  line-height: 45px;
+}
+.pagination_bar .unDiv .pagination a:hover {
+  cursor: pointer;
+}
+.pagination_bar .unDiv .pagination li:first-child a {
+  width: 120px;
+}
+.pagination_bar .unDiv .pagination li:last-child a {
+  width: 100px;
+}
+.pagination_bar .unDiv .pagination li:first-child {
+  margin: 0 15px 0 0;
+}
+.pagination_bar .unDiv .pagination li:last-child {
+  margin: 0 0 0 15px;
+}
+.pagination_bar .unDiv .pagination .selected {
+  background-color: black;
+  color: white;
+}
+
+/*# sourceMappingURL=master.css.map */

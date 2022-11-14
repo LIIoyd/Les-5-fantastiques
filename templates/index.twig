@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+		<div class="content">
+
+			<div class="galleries">
+				<h1>Painterest</h1>
+
+				{% if private == true %}
+					<h2>Galeries privées</h2>
+				{% else %}
+					<h2>Galeries publiques</h2>
+				{% endif %}
+
+				{% for gallery in galleriesToShow %}
+					<a href={{gallery.id}}><div class="gallery">
+						<img src="{{gallery.img}}">
+						<div><p>{{gallery.name}}</p></div>
+					</div></a>
+				{% endfor %}
+
+				{% if private == true %}
+					<a href="/addGallery"><div class="gallery createGallery"></div></a>
+				{% endif %}
+
+
+			</div>
+
+		</div>
+	</body>
+
+	{% include 'footer.twig' %}
+
+</html>
