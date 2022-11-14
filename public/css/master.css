@@ -296,21 +296,6 @@ input[type=password] {
   color: white;
 }
 
-.image {
-  position: relative;
-}
-.image .suppimage {
-  font-size: 20px;
-  background-color: rgba(237, 237, 237, 0.7);
-  border: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.image .suppimage:hover {
-  cursor: pointer;
-}
-
 #infgallery {
   padding: 2%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -380,6 +365,23 @@ input[type=password] {
   background-color: rgba(0, 0, 0, 0.3);
   margin: 2%;
   padding: 1%;
+  position: relative;
+}
+#mygallery .image .suppimage {
+  width: 20px;
+  background-color: none;
+  border: none;
+  position: absolute;
+  margin: 2px;
+  right: 0;
+  top: 0;
+}
+#mygallery .image .suppimage:hover {
+  cursor: pointer;
+}
+#mygallery .image .suppimage .add {
+  font-size: 17px;
+  width: 30px;
 }
 #mygallery .image img {
   aspect-ratio: auto;
