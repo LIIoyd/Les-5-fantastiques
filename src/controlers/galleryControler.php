@@ -97,11 +97,11 @@ class galleryControler
     $title = $_POST['titleGalerie'];
     $description = $_POST['descriptionGalerie'];
 
-    if($title == "") {
+    if ($title == "") {
       $title = $this->galleryService->getGalleryId($idGallery)->getNameGallery();
     }
 
-    if($description == "") {
+    if ($description == "") {
       $title = $this->galleryService->getGalleryId($idGallery)->getDescriptionGallery();
     }
 
@@ -114,6 +114,31 @@ class galleryControler
     ]);
   }
 
+  public function addOwnerGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $idGallery = $args['id_gallery'];
+    $name = $_POST['username'];
+
+    $reserch = $this->userControler->userService->getUser($name);
+
+    if ($reserch == null) {
+      return $this->view->render($response, 'addOwner.twig', [
+        'id' => $idGallery,
+        'account' => $_SESSION["username"],
+        'resultMessage' => "L'utilisateur n'existe pas.",
+      ]);
+    } else {
+      $gallery = $this->galleryService->getGalleryId($idGallery);
+
+      $this->userControler->addGalleries($name, $gallery);
+    }
+
+    return $this->view->render($response, 'addOwner.twig', [
+      'id' => $idGallery,
+      'account' => $_SESSION["username"],
+      'resultMessage' => "Le participant vient d'être ajouté.",
+    ]);
+  }
 
   public function logoutAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {

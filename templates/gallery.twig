@@ -18,15 +18,18 @@
 						<h1>{{title}}</h1>
 					</div>
 					{% if admin == true %}
-					<div class="buttons">
-						<input type="button" value="Partager la galerie">
-						<form action="/modifyGallery/{{id}}" method="get">
-							<input type="submit" value="Modifier la galerie">
-						</form>
-						<form class="addimage" action="/addImage/{{id}}" method="get">
-							<input type="submit" class="add" value="+">
-						</form>
-					</div>
+						<div class="buttons">
+							<form action="/addOwner/{{id}}" method="get">
+								<input type="submit" value="Partager la galerie">
+							</form>
+
+							<form action="/modifyGallery/{{id}}" method="get">
+								<input type="submit" value="Modifier la galerie">
+							</form>
+							<form class="addimage" action="/addImage/{{id}}" method="get">
+								<input type="submit" class="add" value="+">
+							</form>
+						</div>
 					{% endif %}
 					<div class="description">
 						<p>Description :</p>
@@ -51,11 +54,11 @@
 				</div>
 
 				<div id="mygallery">
-					 {% for key, image in images %}
-					 	<div class="image">
+					{% for key, image in images %}
+						<div class="image">
 							<form class="suppimage" action="/gallery/{{id}}" method="post">
-									<input  type="hidden" name="pictureId"  value="{{image.getIdPicture()}}"/>
-									<input type="submit" class="add" value="x">
+								<input type="hidden" name="pictureId" value="{{image.getIdPicture()}}"/>
+								<input type="submit" class="add" value="x">
 							</form>
 
 							<a href="/gallery/{{id}}/picture/{{key}}">

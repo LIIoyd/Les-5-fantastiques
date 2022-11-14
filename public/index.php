@@ -89,6 +89,20 @@ $app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
     }
 });
 
+$app->get('/addOwner/{id_gallery}', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    if (isset($_SESSION["username"])) {
+        return $view->render($response, 'addOwner.twig', [
+            'account' => $_SESSION["username"],
+            'id' => $args['id_gallery'],
+        ]);
+    } else {
+        return $view->render($response, 'index.twig', [
+            'account' => "",
+        ]);
+    }
+});
+
 $app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
 
 $app->post('/', \App\controlers\galleryControler::class . ':deleteGallery');
@@ -108,6 +122,8 @@ $app->get('/userGallery', \App\controlers\userControler::class . ':getGalleries'
 $app->post('/newGallery', \App\controlers\galleryControler::class . ':newGallery');
 
 $app->post('/modifyGallery/{id_gallery}', \App\controlers\galleryControler::class . ':modifyGallery');
+
+$app->post('/addOwner/{id_gallery}', \App\controlers\galleryControler::class . ':addOwnerGallery');
 
 $app->get('/getGallery', \App\controlers\galleryControler::class . ':getGallery');
 

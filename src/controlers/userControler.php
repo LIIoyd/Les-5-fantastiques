@@ -59,31 +59,32 @@ class userControler
             }
         }
         if ($message == "Tu es connecté.") {
-          return $this->view->render($response, 'index.twig', [
-              'account' => " : " . $_SESSION["username"],
-          ]);
+            return $this->view->render($response, 'index.twig', [
+                'account' => " : " . $_SESSION["username"],
+            ]);
         } else {
-          return $this->view->render($response, 'signIn.twig', [
-              'response' => $message,
-              'account' => " : " . $_SESSION["username"],
-          ]);
+            return $this->view->render($response, 'signIn.twig', [
+                'response' => $message,
+                'account' => " : " . $_SESSION["username"],
+            ]);
         }
     }
 
     public function getGalleries()
     {
-      $usr = $this->userService;
-      // $adm = $usr->getUser($_SESSION('username'));
-      $adm = $usr->getUser($_SESSION['username']);
-      $gal = $adm->getGalleries();
-      return $gal;
+        $usr = $this->userService;
+        $adm = $usr->getUser($_SESSION['username']);
+        $gal = $adm->getGalleries();
+        return $gal;
     }
 
-    public function getIdByName($name) {
+    public function getIdByName($name)
+    {
         return $this->userService->getUser($name)->getIdUser();
     }
 
-    public function addGalleries($user,$Galleryname){
-        return $this->userService->addGalleries($user,$Galleryname);
+    public function addGalleries($user, $gallery)
+    {
+        return $this->userService->addGalleries($user, $gallery);
     }
 }

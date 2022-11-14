@@ -209,12 +209,24 @@ html {
   padding-bottom: 20px;
   text-shadow: 0px 0px 10px white;
 }
-.containerFormGallery h2, .containerFormGallery label {
+.containerFormGallery h2,
+.containerFormGallery label {
   color: white;
 }
 .containerFormGallery form {
   background-color: rgba(0, 0, 0, 0.6);
 }
+.retpir input {
+  background-color: darkslategray;
+  padding: 5px;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.retpir input:hover {
+  background-color: gray;
+}
+
 .containerForm {
   padding-top: 10%;
   width: 400px;
@@ -290,6 +302,9 @@ input[type=password] {
   right: 0;
   top: 0;
 }
+.image .suppimage:hover {
+  cursor: pointer;
+}
 
 #infgallery {
   padding: 2%;
@@ -312,6 +327,22 @@ input[type=password] {
   grid-row: 1;
   display: flex;
   justify-content: space-evenly;
+}
+#infgallery .buttons input {
+  background-color: darkslategray;
+  padding: 5px;
+  color: white;
+}
+#infgallery .buttons input:hover {
+  background-color: gray;
+}
+#infgallery .buttons form input {
+  background-color: darkslategray;
+  padding: 5px;
+  color: white;
+}
+#infgallery .buttons form input:hover {
+  background-color: gray;
 }
 #infgallery .description {
   grid-column: 1/3;
@@ -399,6 +430,12 @@ input[type=password] {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   font-size: 5em;
+}
+.onePicture button:hover {
+  cursor: pointer;
+}
+.onePicture *:disabled:hover {
+  cursor: not-allowed;
 }
 .onePicture img {
   max-width: 100%;
