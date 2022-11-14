@@ -27,7 +27,8 @@ class userControler
                 $reserch = $this->userService->getUser(($_POST['username']));
                 if ($reserch == null) {
                     $message = "Compte crée.";
-                    $user = $this->userService->newUser($_POST['username'], password_hash($_POST['password'], PASSWORD_DEFAULT));
+                    $sexe_user = $_POST['sexeU'];
+                    $user = $this->userService->newUser($_POST['username'], password_hash($_POST['password'], PASSWORD_DEFAULT), $sexe_user);
                     return $this->view->render($response, 'signIn.twig');
                 } else {
                     $message = "L'utilisateur existe déjà.";
