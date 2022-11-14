@@ -42,6 +42,13 @@ final class user{
         $this->password_user = $passwordUser; 
     } 
 
+    public function addGallery(gallery $gallery): void
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries->add($gallery);
+        }
+    }
+
     public function getGalleries(){
         return $this->galleries;
     }

@@ -15,7 +15,9 @@
 			</h1>
 
 			<p id="resultMessageUpload">{{resultMessage}}</p>
-
+			<form class="retpir" action="/gallery/{{id}}" method="get">
+				<input type="submit" value="retour a la gallery">
+			</form>
 			<form class="content" action="/modifyGallery/{{id}}" method="post" enctype="multipart/form-data">
 				<label>
 					<h2><b>Titre de la galerie</b></h2>
@@ -54,6 +56,13 @@
 					<input class="sub" type="submit" id='submit' value='Modifier galerie'>
 				</section>
 			</form>
+
+			<form  class="content" action="/home" method="post">
+				<section>
+					<input class="sub" type="submit" id='submit' value='Supprimer la galerie'>
+				</section>
+			</form>
+
 		</div>
 
 	</body>

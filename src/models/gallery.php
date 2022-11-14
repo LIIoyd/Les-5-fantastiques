@@ -26,7 +26,7 @@ class gallery
     #[Column(type: 'string', nullable: false)]
     private String $name_gallery;
 
-    #[Column(type: 'datetime', nullable: false)]
+    #[Column(type: 'datetime', nullable: false , options: ['default' => 'CURRENT_TIMESTAMP'])]
     private DateTime $date_creat;
 
     #[Column(type: 'string', nullable: false)]
