@@ -94,7 +94,6 @@ final class galleryService
         $this->em->flush();
 
         $this->logger->info("La galerie a été modifié");
-        echo ("La galerie a été modifié");
 
         return  $reserch;
     }

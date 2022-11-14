@@ -92,12 +92,18 @@ class galleryControler
   public function modifyGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
     $idGallery = $args['id_gallery'];
-
-    echo $idGallery;
+    $access = $_POST['drone'];
 
     $title = $_POST['titleGalerie'];
     $description = $_POST['descriptionGalerie'];
-    $access = $_POST['drone'];
+
+    if($title == "") {
+      $title = $this->galleryService->getGalleryId($idGallery)->getNameGallery();
+    }
+
+    if($description == "") {
+      $title = $this->galleryService->getGalleryId($idGallery)->getDescriptionGallery();
+    }
 
     $this->galleryService->modifyGallery($idGallery, $title, $access, $description);
 
