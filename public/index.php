@@ -132,6 +132,8 @@ $app->post('/', \App\controlers\galleryControler::class . ':deleteGallery');
 
 $app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
 
+$app->post('/search', \App\controlers\galleryControler::class . ':searchGalleries');
+
 $app->post('/addImage/{id_gallery}', \App\controlers\pictureControler::class . ':addImage');
 
 $app->post('/createUser', \App\controlers\userControler::class . ':createUser');

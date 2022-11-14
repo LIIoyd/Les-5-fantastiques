@@ -36,6 +36,29 @@ class galleryControler
     return "tag ajouté";
   }
 
+  public function searchGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    $gal = $this->tagService->getTagGalleries($_POST['tag']);
+    $taggedGalleries = [];
+
+    foreach ($gal as &$gallery) {
+      $backgroundImage = $this->pictureControler->getRandomPictureForBackground($gallery->getIdGallery());
+      array_push($taggedGalleries, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "/".$backgroundImage]);
+    }
+
+    if (isset($_SESSION["username"])) {
+      $account = $_SESSION["username"];
+    } else {
+      $account = "";
+    }
+
+    return $this->view->render($response, 'search.twig', [
+      'tag' => $_POST['tag'],
+        'account' => $account,
+        'galleriesToShow' => $taggedGalleries,
+    ]);
+  }
+
   public function connecteAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
     $message = "Veuillez saisir une authentification correct.";

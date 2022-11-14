@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+		<div class="content">
+
+			<div class="galleries">
+				<h1>Search : {{tag}}</h1>
+
+				{% for gallery in galleriesToShow %}
+					<a href={{gallery.id}}><div class="gallery">
+						<img src="{{gallery.img}}">
+						<div><p>{{gallery.name}}</p></div>
+					</div></a>
+				{% endfor %}
+
+			</div>
+
+		</div>
+	</body>
+
+	{% include 'footer.twig' %}
+
+</html>

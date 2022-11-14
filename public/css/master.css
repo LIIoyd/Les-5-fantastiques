@@ -45,6 +45,15 @@ video {
   opacity: 1;
   visibility: visible;
 }
+.menuNav ul li form {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.menuNav ul li form button {
+  background: none;
+  border: none;
+  font-size: 2em;
+}
 .menuNav ul .logo {
   padding: 0;
   margin: 0;

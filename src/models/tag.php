@@ -17,19 +17,19 @@ use Doctrine\ORM\Mapping\InverseJoinColumn;
 use Symfony\Component\DependencyInjection\Reference;
 
 #[Entity, Table(name: 'tag')]
-final class tag{    
+final class tag{
 
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id_tag;
 
     #[Column(type: 'string', nullable: false)]
     private string $name_tag;
- 
+
     #[ManyToMany(targetEntity: 'gallery', inversedBy:'tags', cascade:["persist"])]
     #[JoinTable(name: 'galleryTag')]
     #[JoinColumn(name: 'id_tag', referencedColumnName: 'id_tag')]
     #[InverseJoinColumn(name: 'id_gallery' , referencedColumnName: 'id_gallery')]
-    private Collection $gallerys; 
+    private Collection $gallerys;
 
     #[ManyToMany(targetEntity: 'picture', inversedBy:'tags', cascade:["persist"])]
     #[JoinTable(name: 'pictureTag')]
@@ -66,6 +66,10 @@ final class tag{
     public function getTag(): string
     {
         return $this->name_tag;
+    }
+
+    public function getGallerys() {
+      return $this->gallerys;
     }
 
     public function setIdTag($idTag)

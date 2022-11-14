@@ -31,7 +31,7 @@ final class tagService
             $this->logger->info("Un tag a été créée");
     }
 
-    
+
     public function newTagGallery($name_tag , $Gallery){
             $tag = $this->getTag($name_tag);
             if($tag !== null){
@@ -47,19 +47,27 @@ final class tagService
             $this->logger->info("Un tag a été créée");
     }
 
-    public function getTag($name_tag)
+    public function getTagGalleries($name_tag)
     {
         $this->logger->info("Recherche d'un tag");
         $repo = $this->em->getRepository(tag::class);
         $tag = $repo->findOneBy(
             array('name_tag' => $name_tag)
         );
-        if ($tag !== null) {
-            $this->logger->info("Tag trouvé :" . $tag->getIdTag());
+        if ($tag!=null) {
+          return $tag->getGallerys();
         } else {
-            $this->logger->info("Ce tag n'existe pas !");
+          return [];
         }
-        return $tag;
+    }
+
+    public function getIdGalleriesByTagId($id_tag) {
+      $this->logger->info("Recherche d'une gallerie");
+      $repo = $this->em->getRepository(galleryTag::class);
+      $tag = $repo->findBy(
+          array('id_tag' => $id_tag)
+      );
+      return $tag;
     }
 
 }

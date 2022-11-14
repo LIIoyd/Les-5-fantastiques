@@ -39,6 +39,15 @@ $fontBasic: 20px !default;
                     visibility: visible;
                 }
             }
+            form {
+              display: grid;
+              grid-template-columns: auto auto;
+              button {
+                background: none;
+                border: none;
+                font-size: 2em;
+              }
+            }
         }
 
         .logo{
