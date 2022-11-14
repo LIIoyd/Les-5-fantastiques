@@ -57,9 +57,6 @@ class galleryControler
       $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
       $galleriesAndId = [];
       foreach ($listGalleries as &$gallery) {
-        $listObjects = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
-        $listImages = array_values((array) $images[$args['id_picture']]);
-        $random = rand(0,(count($listImages)-1));
         $backgroundImage = $this->pictureControler->getRandomPictureForBackground($gallery->getIdGallery());
         array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "/".$backgroundImage]);
       }
