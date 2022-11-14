@@ -7,6 +7,10 @@ $fontBasic: 20px !default;
     margin-top: 10px;
 }
 
+.account{
+    width: 150px;
+}
+
 .menuNav {
     font-size: $fontBasic;
     height: auto;
@@ -72,6 +76,10 @@ $fontBasic: 20px !default;
 }
 
 @media (max-width: 500px) {
+    .account{
+        width: 93%;
+    }
+
     .menuNav {
         font-size: $fontBasic;
         height: 60px;

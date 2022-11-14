@@ -7,34 +7,34 @@
           <img class="picture" src="/media/logo.png">
         </li>
         <li>
-          <a href="/">Home</a>
+          <a href="/">Accueil</a>
         </li>
         <li>
           {% if account == "" %}
-            <a href="/signIn">My Galleries</a>
+            <a href="/signIn">Mes Galeries</a>
           {% else %}
-            <a href="/myGalleries">My Galleries</a>
+            <a href="/myGalleries">Mes Galeries</a>
           {% endif %}
         </li>
       </div>
       <div>
         <li class="account">
           {% if account == "" %}
-            <a href="#">Account</a>
+            <a href="#">Compte</a>
           {% else %}
             <a href="#">{{account}}</a>
           {% endif %}
           <ul>
             {% if account == "" %}
               <li>
-                <a href="/signIn">Sign in</a>
+                <a href="/signIn">Connexion</a>
               </li>
               <li>
-                <a href="/signUp">Sign up</a>
+                <a href="/signUp">Inscription</a>
               </li>
             {% else %}
               <li>
-                <a href="/logout">Logout</a>
+                <a href="/logout">Déconnexion</a>
               </li>
             {% endif %}
           </ul>
