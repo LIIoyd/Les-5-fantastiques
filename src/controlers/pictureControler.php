@@ -227,6 +227,7 @@ class pictureControler
         $suiv = "hidden";
       }
       return $view->render($response, 'picture.twig', [
+        "id" => $args['id_gallery'],
         "title" => $stuff[2],
         "descr" => $stuff[5],
         "height" => $stuff[3],
