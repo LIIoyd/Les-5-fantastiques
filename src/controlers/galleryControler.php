@@ -1,4 +1,5 @@
 <?php
+
 namespace App\controlers;
 
 use Psr\Http\Message\ResponseInterface;
@@ -10,146 +11,173 @@ use App\services\tagService;
 
 class galleryControler
 {
-    private $view;
+  private $view;
 
-    public function __construct(Twig $view, galleryService $galleryService, userControler $userControler,tagService $tagService)
-    {
-        $this->view = $view;
-        $this->galleryService = $galleryService;
-        $this->userControler = $userControler;
-        $this->tagService = $tagService;
+  public function __construct(Twig $view, galleryService $galleryService, userControler $userControler, tagService $tagService)
+  {
+    $this->view = $view;
+    $this->galleryService = $galleryService;
+    $this->userControler = $userControler;
+    $this->tagService = $tagService;
+  }
+
+  public function addTagGallery($picture, $tagTab)
+  {
+    if (count($tagTab) > 5) {
+      return "erreur trop de tags";
     }
 
-    public function addTagGallery($picture,$tagTab){
-        if(count($tagTab) > 5){
-            return "erreur trop de tags" ;
+    foreach ($tagTab as $tag) {
+      $this->tagService->newTagGallery(trim($tag), $picture);
+    }
+
+    return "tag ajouté";
+  }
+
+  public function connecteAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    $message = "Veuillez saisir une authentification correct.";
+    if (isset($_POST['password']) && isset($_POST['username'])) {
+      $reserch = $this->userControler->userService->getUser(($_POST['username']));
+      if ($reserch == null) {
+        $message = "Nom d'utilisateur invalide.";
+      } else {
+        $passwordUser = $this->userControler->userService->getPassword($_POST['username']);
+        if (password_verify($_POST['password'], $passwordUser)) {
+          $message = "Tu es connecté.";
+          $_SESSION["username"] = ($_POST['username']);
+        } else {
+          $message = "Mot de passe invalide.";
         }
-
-        foreach($tagTab as $tag){
-            $this->tagService->newTagGallery(trim($tag),$picture);
-        }
-
-        return "tag ajouté";
+      }
     }
-
-    public function newGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-    {
-        $title = $_POST['titleGalerie'];
-        $description = $_POST['descriptionGalerie'];
-        $access = $_POST['drone'];
-        $user = $_SESSION["username"];
-        $userId = $this->userControler->getIdByName($user);
-        $tag = $_POST['tags'];
-        $tagTab = explode(",",$tag);
-
-        $newGallery = $this->galleryService->newGallery($title, $access, $description, $userId);
-        $mesTag = $this->addTagGallery($newGallery,$tagTab);
-        return $this->view->render($response, 'uploadGallery.twig', [
-            'account' => $_SESSION["username"],
-            'resultMessage' => "La galerie vient d'être créée.",
-        ]);
-    }
-
-    public function logoutAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-      unset($_SESSION["username"]);
+    if ($message == "Tu es connecté.") {
       $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
       $galleriesAndId = [];
       foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
       }
       return $this->view->render($response, 'index.twig', [
+        'account' => $_SESSION["username"],
+        'private' => false,
+        'galleriesToShow' => $galleriesAndId,
+      ]);
+    } else {
+      return $this->view->render($response, 'signIn.twig', [
+        'response' => $message,
         'account' => "",
-        'private' => false,
-        'galleriesToShow' => $galleriesAndId,
       ]);
     }
+  }
 
-    public function connecteAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-      $message = "Veuillez saisir une authentification correct.";
-      if (isset($_POST['password']) && isset($_POST['username'])) {
-          $reserch = $this->userControler->userService->getUser(($_POST['username']));
-          if ($reserch == null) {
-              $message = "Nom d'utilisateur invalide.";
-          } else {
-              $passwordUser = $this->userControler->userService->getPassword($_POST['username']);
-              if (password_verify($_POST['password'], $passwordUser)) {
-                  $message = "Tu es connecté.";
-                  $_SESSION["username"] = ($_POST['username']);
-              } else {
-                  $message = "Mot de passe invalide.";
-              }
-          }
-      }
-      if ($message == "Tu es connecté.") {
-        $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
-        $galleriesAndId = [];
-        foreach ($listGalleries as &$gallery) {
-          array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
-        }
-        return $this->view->render($response, 'index.twig', [
-            'account' => $_SESSION["username"],
-            'private' => false,
-            'galleriesToShow' => $galleriesAndId,
-        ]);
-      } else {
-        return $this->view->render($response, 'signIn.twig', [
-            'response' => $message,
-            'account' => "",
-        ]);
-      }
-    }
+  public function newGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $title = $_POST['titleGalerie'];
+    $description = $_POST['descriptionGalerie'];
+    $access = $_POST['drone'];
+    $user = $_SESSION["username"];
+    $userId = $this->userControler->getIdByName($user);
+    $tag = $_POST['tags'];
+    $tagTab = explode(",", $tag);
 
-    public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-      if (isset($_SESSION["username"])) {
-              $account = $_SESSION["username"];
-      } else {
-              $account = "";
-      }
-      $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
-      $galleriesAndId = [];
-      foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
-      }
-      return $this->view->render($response, 'index.twig', [
-        'account' => $account,
-        'private' => false,
-        'galleriesToShow' => $galleriesAndId,
-      ]);
-    }
+    $newGallery = $this->galleryService->newGallery($title, $access, $description, $userId);
+    $mesTag = $this->addTagGallery($newGallery, $tagTab);
+    return $this->view->render($response, 'uploadGallery.twig', [
+      'account' => $_SESSION["username"],
+      'resultMessage' => "La galerie vient d'être créée.",
+    ]);
+  }
 
-    public function getMyGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-      if (isset($_SESSION["username"])) {
-              $account = $_SESSION["username"];
-      } else {
-              $account = "";
-      }
-      $listGalleries = $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries());
-      $galleriesAndId = [];
-      foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
-      }
-      return $this->view->render($response, 'index.twig', [
-        'account' => $account,
-        'private' => true,
-        'galleriesToShow' => $galleriesAndId,
-      ]);
-    }
+  public function modifyGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $idGallery = $args['id_gallery'];
 
-    public function getGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
-        $gal = $this->galleryService->getGallery('photo mignon');
-        echo $gal;
-        var_dump($gal->getUsers());
-        return $this->view->render($response, 'app.twig');
-    }
+    $title = $_POST['titleGalerie'];
+    $description = $_POST['descriptionGalerie'];
+    $access = $_POST['drone'];
+    $tag = $_POST['tags'];
+    $tagTab = explode(",", $tag);
 
-    public function getUsers(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
-        $gal = $this->galleryService->getGallery('test');
-        $galRes = $gal->getUsers();
-        $text = "Nom de galerie: " . $gal->getNameGallery() . " <br> Users : ";
-        foreach($galRes as $galleries){
-            $text .= " " . $galleries;
-        }
-        echo $text;
-        return $this->view->render($response, 'app.twig');
+    $this->galleryService->modifyGallery($idGallery, $title, $access, $description);
+
+    return $this->view->render($response, 'modifyGallery.twig', [
+      'ida' => $idGallery,
+      'account' => $_SESSION["username"],
+      'resultMessage' => "La galerie vient d'être modifié.",
+    ]);
+  }
+
+
+  public function logoutAndShowPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    unset($_SESSION["username"]);
+    $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
+    $galleriesAndId = [];
+    foreach ($listGalleries as &$gallery) {
+      array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
     }
+    return $this->view->render($response, 'index.twig', [
+      'account' => "",
+      'private' => false,
+      'galleriesToShow' => $galleriesAndId,
+    ]);
+  }
+
+  public function getMyGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    if (isset($_SESSION["username"])) {
+      $account = $_SESSION["username"];
+    } else {
+      $account = "";
+    }
+    $listGalleries = $this->galleryService->getPrivatesGalleries($this->userControler->getGalleries());
+    $galleriesAndId = [];
+    foreach ($listGalleries as &$gallery) {
+      array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
+    }
+    return $this->view->render($response, 'index.twig', [
+      'account' => $account,
+      'private' => true,
+      'galleriesToShow' => $galleriesAndId,
+    ]);
+  }
+
+  public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    if (isset($_SESSION["username"])) {
+      $account = " : " . $_SESSION["username"];
+    } else {
+      $account = "";
+    }
+    $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
+    $galleriesAndId = [];
+    foreach ($listGalleries as &$gallery) {
+      array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
+    }
+    return $this->view->render($response, 'index.twig', [
+      'account' => $account,
+      'private' => false,
+      'galleriesToShow' => $galleriesAndId,
+    ]);
+  }
+
+  public function getGallery(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $gal = $this->galleryService->getGallery('photo mignon');
+    echo $gal;
+    var_dump($gal->getUsers());
+    return $this->view->render($response, 'app.twig');
+  }
+
+  public function getUsers(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    $gal = $this->galleryService->getGallery('test');
+    $galRes = $gal->getUsers();
+    $text = "Nom de galerie: " . $gal->getNameGallery() . " <br> Users : ";
+    foreach ($galRes as $galleries) {
+      $text .= " " . $galleries;
+    }
+    echo $text;
+    return $this->view->render($response, 'app.twig');
+  }
 }
