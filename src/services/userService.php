@@ -55,9 +55,9 @@ final class userService
     }
     
 
-    public function newUser($name, $password)
+    public function newUser($name, $password, $sexeUser)
     {
-        $newuser = new user($name, $password);
+        $newuser = new user($name, $password, $sexeUser);
         $this->em->persist($newuser);
         $this->em->flush();
     }
