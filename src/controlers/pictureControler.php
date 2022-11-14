@@ -172,8 +172,12 @@ class pictureControler
 
     public function getRandomPictureForBackground($idGallery){
       $listObjects = $this->pictureService->getAllPicturesGallery($idGallery);
-      $random = rand(0,(count($listObjects)-1));
-      return $listObjects[$random]->getLink();
+      if (count($listObjects)>0) {
+        $random = rand(0,(count($listObjects)-1));
+        return $listObjects[$random]->getLink();
+      } else {
+        return "media/logo.png";
+      }
     }
 
     public function displayPicture(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
