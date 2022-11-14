@@ -87,7 +87,7 @@ class galleryControler
           array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/".$gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
         }
         return $this->view->render($response, 'index.twig', [
-            'account' => " : " . $_SESSION["username"],
+            'account' => $_SESSION["username"],
             'private' => false,
             'galleriesToShow' => $galleriesAndId,
         ]);
@@ -101,7 +101,7 @@ class galleryControler
 
     public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
       if (isset($_SESSION["username"])) {
-              $account = " : " . $_SESSION["username"];
+              $account = $_SESSION["username"];
       } else {
               $account = "";
       }
@@ -119,7 +119,7 @@ class galleryControler
 
     public function getMyGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args) {
       if (isset($_SESSION["username"])) {
-              $account = " : " . $_SESSION["username"];
+              $account = $_SESSION["username"];
       } else {
               $account = "";
       }

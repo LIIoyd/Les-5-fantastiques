@@ -22,26 +22,11 @@ $twig = Twig::create('../templates', ['cache' => false]);
 // Add Twig-View Middleware
 $app->add(TwigMiddleware::create($app, $twig));
 
-$app->get('/', function ($request, $response, $args) {
-    $view = Twig::fromRequest($request);
-
-    if (isset($_SESSION["username"])) {
-        return $view->render($response, 'index.twig', [
-            'account' => " : " . $_SESSION["username"],
-        ]);
-    } else {
-        return $view->render($response, 'index.twig', [
-            'account' => ""
-        ]);
-    }
-});
-
-
 $app->get('/signUp', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'signUp.twig', [
-            'account' => " : " . $_SESSION["username"],
+            'account' => $_SESSION["username"],
         ]);
     } else {
         return $view->render($response, 'signUp.twig', [
@@ -54,7 +39,7 @@ $app->get('/signIn', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'signIn.twig', [
-            'account' => " : " . $_SESSION["username"],
+            'account' => $_SESSION["username"],
         ]);
     } else {
         return $view->render($response, 'signIn.twig', [
@@ -67,7 +52,7 @@ $app->get('/addImage/{id_gallery}', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'upload.twig', [
-            'account' => " : " . $_SESSION["username"],
+            'account' => $_SESSION["username"],
             'id' => $args['id_gallery'],
         ]);
     } else {
@@ -81,7 +66,7 @@ $app->get('/addGallery', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     if (isset($_SESSION["username"])) {
         return $view->render($response, 'uploadGallery.twig', [
-            'account' => " : " . $_SESSION["username"],
+            'account' => $_SESSION["username"],
         ]);
     } else {
         return $view->render($response, 'index.twig', [
@@ -90,7 +75,7 @@ $app->get('/addGallery', function ($request, $response, $args) {
     }
 });
 
-$app->get('/home', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
+$app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
 
 $app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
 

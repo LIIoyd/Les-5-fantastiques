@@ -129,12 +129,18 @@ class pictureControler
     }
 
     public function displayGalleryPic(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+        if (isset($_SESSION["username"])) {
+            $account = $_SESSION["username"];
+        } else {
+                $account = "";
+        }
         $gallery = $this->galleryService->getGalleryId($args['id_gallery']);
         $user = $this->userService->getUserId($gallery->getIdCreator());
         
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
         $view = Twig::fromRequest($request);
         return $view->render($response, 'gallery.twig', [
+            'account' => $account,
             "id" => $gallery->getIdGallery(),
             "title" => $gallery->getNameGallery(),
             "descr" => $gallery->getDescriptionGallery(),

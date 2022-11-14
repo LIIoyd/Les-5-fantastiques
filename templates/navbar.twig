@@ -7,7 +7,7 @@
           <img class="picture" src="/media/logo.png">
         </li>
         <li>
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </li>
         <li>
           {% if account == "" %}
@@ -19,8 +19,11 @@
       </div>
       <div>
         <li class="account">
-          <a href="#">Account
-            {{account}}</a>
+          {% if account == "" %}
+            <a href="#">Account</a>
+          {% else %}
+            <a href="#">{{account}}</a>
+          {% endif %}
           <ul>
             {% if account == "" %}
               <li>
