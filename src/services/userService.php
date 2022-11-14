@@ -53,6 +53,12 @@ final class userService
         $password = $user->getPasswordUser();
         return $password;
     }
+
+    public function getSexe(string $name) {
+        $user = $this->getUser($name);
+        $sexe_User = $user->getSexeUser();
+        return $sexe_User;
+    }
     
 
     public function newUser($name, $password, $sexeUser)
@@ -70,6 +76,28 @@ final class userService
             $this->em->persist($user);
             $this->em->flush();
             return "galerie ajouté a l utilisateur";
+        }
+        return "utilisateur inconnu";
+    }
+
+    public function changeName($user, $newName) {
+        $user = $this->getUser($user);
+        if($user !== null){
+            $user->setNameUser($newName);
+            $this->em->persist($user);
+            $this->em->flush();
+            return "Nom de l'utilisateur modifié";
+        }
+        return "utilisateur inconnu";
+    }
+
+    public function changeSexe($user, $newSexe) {
+        $user = $this->getUser($user);
+        if($user !== null){
+            $user->setSexeUser($newSexe);
+            $this->em->persist($user);
+            $this->em->flush();
+            return "Sexe de l'utilisateur modifié";
         }
         return "utilisateur inconnu";
     }

@@ -88,4 +88,41 @@ class userControler
     {
         return $this->userService->addGalleries($user, $gallery);
     }
+ 
+    public function displayAccount(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
+        if (isset($_SESSION["username"])) {
+            $account = $_SESSION["username"];
+        } else {
+            $account = "";
+        }
+
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'myAccount.twig', [
+            "sexeUser" => "",
+            "account" => $account,
+            "nameUser" => $account,
+        ]);
+    }
+
+    public function modifyNameAccount(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+        $newName = $_POST['userN'];
+        $account = $_SESSION["username"];
+        
+        $this->userService->changeName($account, $newName);
+
+        return $this->displayAccount($request, $response, $args);
+    }
+
+    public function modifySexeAccount(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+        $newSexe = $_POST['sexeU'];
+        $account = $_SESSION["username"];
+        
+        $this->userService->changeSexe($account, $newSexe);
+
+        return $this->displayAccount($request, $response, $args);
+    }
+
+    
+
+
 }

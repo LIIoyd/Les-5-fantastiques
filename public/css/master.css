@@ -442,4 +442,15 @@ input[type=password] {
   max-height: 100%;
 }
 
+#myAccount {
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 49%);
+  gap: 10px;
+  grid-auto-rows: 50px;
+  align-items: center;
+}
+
 /*# sourceMappingURL=master.css.map */
