@@ -77,6 +77,23 @@ $app->get('/addGallery', function ($request, $response, $args) {
 
 $app->get('/', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
 
+
+$app->get('/modifyGallery/{id_gallery}', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    if (isset($_SESSION["username"])) {
+        return $view->render($response, 'modifyGallery.twig', [
+            'account' => $_SESSION["username"],
+            'id' => $args['id_gallery'],
+        ]);
+    } else {
+        return $view->render($response, 'index.twig', [
+            'account' => "",
+        ]);
+    }
+});
+
+$app->get('/home', \App\controlers\galleryControler::class . ':getAllPublicGalleries');
+
 $app->get('/myGalleries', \App\controlers\galleryControler::class . ':getMyGalleries');
 
 $app->post('/addImage/{id_gallery}', \App\controlers\pictureControler::class . ':addImage');
@@ -90,6 +107,8 @@ $app->get('/logout', \App\controlers\galleryControler::class . ':logoutAndShowPu
 $app->get('/userGallery', \App\controlers\userControler::class . ':getGalleries');
 
 $app->post('/newGallery', \App\controlers\galleryControler::class . ':newGallery');
+
+$app->post('/modifyGallery/{id_gallery}', \App\controlers\galleryControler::class . ':modifyGallery');
 
 $app->get('/getGallery', \App\controlers\galleryControler::class . ':getGallery');
 
