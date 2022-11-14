@@ -43,14 +43,16 @@
 				</div>
 
 				<div id="mygallery">
-					 {% for image in images %}
+					 {% for key, image in images %}
 					 	<div class="image">
 							<form class="suppimage" action="/gallery/{{id}}" method="post">
 									<input  type="hidden" name="pictureId"  value="{{image.getIdPicture()}}"/>
 									<input type="submit" class="add" value="x">
 							</form>
 
-							<img src="/{{image.getLink()}}">
+							<a href="/gallery/{{id}}/picture/{{key}}">
+								<img src="/{{image.getLink()}}">
+							</a>
 							<p class="titleImage">{{image.getTitle()}}</p>
 						</div>
 					{% endfor %}

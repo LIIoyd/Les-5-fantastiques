@@ -50,7 +50,7 @@ final class picture{
     {
         $this->link = $link;
         $this->title = $title;
-        $this->height = $height; 
+        $this->height = $height;
         $this->width = $width;
         $this->description_picture = $description;
         $this->id_gallery = $id_gallery;
@@ -89,6 +89,11 @@ final class picture{
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function getTags() 
+    {
+        return $this->tags->getValues();
     }
 
     public function setIdPicture($idPicture)
