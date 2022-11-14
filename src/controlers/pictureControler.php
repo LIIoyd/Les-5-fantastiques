@@ -152,8 +152,8 @@ class pictureControler
     }
 
     public function deletePicture(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
-        $this->pictureService->deletePicture($args['id_picture']);
-        return $this->view->render($response, 'app.twig',[]);
+        $this->pictureService->deletePicture($_POST['pictureId']);
+        return $this->displayGalleryPic($request, $response, $args);
     }
 
 }

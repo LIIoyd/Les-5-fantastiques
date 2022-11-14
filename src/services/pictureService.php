@@ -39,7 +39,8 @@ final class pictureService
     }
 
     public function DeletePicture($Picture){
-        $pic = $this->em->find(picture::class, $Picture);
+        $repo = $this->em->getRepository(picture::class);
+        $pic = $repo->find( $Picture);
         if($pic !== null){
             $this->em->remove($pic);
             $this->em->flush();
