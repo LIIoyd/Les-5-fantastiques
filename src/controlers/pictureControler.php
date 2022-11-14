@@ -170,6 +170,11 @@ class pictureControler
         ]);
     }
 
+    public function getRandomPictureForBackground($idGallery){
+      $listObjects = $this->pictureService->getAllPicturesGallery($idGallery);
+      $random = rand(0,(count($listObjects)-1));
+      return $listObjects[$random]->getLink();
+    }
 
     public function displayPicture(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
       $view = Twig::fromRequest($request);
@@ -185,12 +190,6 @@ class pictureControler
       if ($args['id_picture']==(count($images)-1)) {
         $suiv = "hidden";
       }
-      // echo $stuff[0];
-      // $picture = $this->pictureService->getAllPicturesGallery($args['id_gallery'])[$args['id_picture']];
-      // var_dump($stuff);
-      // echo ((array)$stuff[5]);
-      // $tags = $stuff->getTags();
-      // $tags = $picture->getTags()->getValues();
       return $view->render($response, 'picture.twig', [
         "title" => $stuff[2],
         "descr" => $stuff[5],

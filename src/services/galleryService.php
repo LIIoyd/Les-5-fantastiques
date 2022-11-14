@@ -108,7 +108,7 @@ final class galleryService
         $products = $repository->findBy(
           ['id_gallery' => $gallery],
         );
-        
+
         if($gal !== null){
             foreach($products as $product){
                 $this->em->remove($product);

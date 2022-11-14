@@ -7,17 +7,19 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use App\services\galleryService;
 use App\controlers\userControler;
+use App\controlers\pictureControler;
 use App\services\tagService;
 
 class galleryControler
 {
   private $view;
 
-  public function __construct(Twig $view, galleryService $galleryService, userControler $userControler, tagService $tagService)
+  public function __construct(Twig $view, galleryService $galleryService, pictureControler $pictureControler, userControler $userControler, tagService $tagService)
   {
     $this->view = $view;
     $this->galleryService = $galleryService;
     $this->userControler = $userControler;
+    $this->pictureControler = $pictureControler;
     $this->tagService = $tagService;
   }
 
@@ -55,7 +57,10 @@ class galleryControler
       $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
       $galleriesAndId = [];
       foreach ($listGalleries as &$gallery) {
-        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
+        $listObjects = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
+        $listImages = array_values((array) $images[$args['id_picture']]);
+        $random = rand(0,(count($listImages)-1));
+        array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "/".$listImages[1][$random]]);
       }
       return $this->view->render($response, 'index.twig', [
         'account' => $_SESSION["username"],
@@ -184,7 +189,8 @@ class galleryControler
     $listGalleries = $this->galleryService->getGalleriesByPublicAccess();
     $galleriesAndId = [];
     foreach ($listGalleries as &$gallery) {
-      array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "https://cdn.pixabay.com/photo/2022/11/01/05/18/coffee-7561288_640.jpg"]);
+      $backgroundImage = $this->pictureControler->getRandomPictureForBackground($gallery->getIdGallery());
+      array_push($galleriesAndId, ["name" => $gallery, "id" => "/gallery/" . $gallery->getIdGallery(), "img" => "/".$backgroundImage]);
     }
     return $this->view->render($response, 'index.twig', [
       'account' => $account,
