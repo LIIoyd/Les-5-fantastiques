@@ -119,5 +119,7 @@ $app->get('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':d
 
 $app->post('/gallery/{id_gallery}', \App\controlers\pictureControler::class . ':deletePicture');
 
+$app->get('/gallery/{id_gallery}/picture/{id_picture}', \App\controlers\pictureControler::class . ':displayPicture');
+
 // Run app
 $app->run();

@@ -50,15 +50,17 @@ class pictureControler
         $tag = $_POST['tags'];
         $tagTab = explode(",",$tag);
 
-        
-        $idGallery = $args['id_gallery'];
-       
+        if(isset($args['id_gallery']))  {
+            $idGallery = $args['id_gallery'];
+        }else {
+            $idGallery = 1;
+        }
         if (isset($_SESSION["username"])) {
            $acc = " : " . $_SESSION["username"];
          } else {
         $acc ='account';
          }
-  
+
         //$this->pictureService->newPicture();
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -89,7 +91,7 @@ class pictureControler
             $mes = "The file ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])). " has been uploaded." . $mesTag;
             return $this->view->render($response, 'upload.twig',[
             'resultMessage' => $mes , 'id' => $idGallery, 'account' => $acc ]);
-       
+
         }
 
         // Check file size
@@ -108,10 +110,10 @@ class pictureControler
             return $this->view->render($response, 'upload.twig',[
             'resultMessage' => $mes ,  'id' => $idGallery ,'account' => $acc ]);
         }
-        
+
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk !== 0) {
-            
+
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $imgIfno = getimagesize($target_file);
                 $height = $imgIfno[1];
@@ -166,6 +168,39 @@ class pictureControler
             "images" => $pictures,
             "numbPic" => count($pictures)
         ]);
+    }
+
+
+    public function displayPicture(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+      $view = Twig::fromRequest($request);
+      $prec = "/gallery/".$args['id_gallery']."/picture/".((intval($args['id_picture']))-1);
+      $suiv = "/gallery/".$args['id_gallery']."/picture/".((intval($args['id_picture']))+1);
+      $images = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
+      $stuff = array_values((array) $images[$args['id_picture']]);
+
+
+      if ($args['id_picture']==0) {
+        $prec = "hidden";
+      }
+      if ($args['id_picture']==(count($images)-1)) {
+        $suiv = "hidden";
+      }
+      // echo $stuff[0];
+      // $picture = $this->pictureService->getAllPicturesGallery($args['id_gallery'])[$args['id_picture']];
+      // var_dump($stuff);
+      // echo ((array)$stuff[5]);
+      // $tags = $stuff->getTags();
+      // $tags = $picture->getTags()->getValues();
+      return $view->render($response, 'picture.twig', [
+        "title" => $stuff[2],
+        "descr" => $stuff[5],
+        "height" => $stuff[3],
+        "width" => $stuff[4],
+        "photo" => "/".$stuff[1],
+        "tags" => $this->pictureService->getTagsImageById($stuff[0]),
+        "prec" => $prec,
+        "suiv" => $suiv
+      ]);
     }
 
     public function deletePicture(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{

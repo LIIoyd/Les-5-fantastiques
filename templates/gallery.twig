@@ -19,9 +19,9 @@
 					</div>
 					{% if admin == true %}
 					<div class="buttons">
-						<input type="button" value="partager la galerie">
+						<input type="button" value="Partager la galerie">
 						<form action="/modifyGallery/{{id}}" method="get">
-							<input type="submit" value="modifier la galerie">
+							<input type="submit" value="Modifier la galerie">
 						</form>
 						<form class="addimage" action="/addImage/{{id}}" method="get">
 							<input type="submit" class="add" value="+">
@@ -51,15 +51,16 @@
 				</div>
 
 				<div id="mygallery">
-					 {% for image in images %}
+					 {% for key, image in images %}
 					 	<div class="image">
-							{% if admin == true %}
-								<form action="/gallery/{{id}}" method="post">
-									<input type="hidden" name="pictureId"  value="{{image.getIdPicture()}}"/>
-									<input class="suppimage add" type="submit" value="x">
-								</form>
-							{% endif %}
-							<img src="/{{image.getLink()}}">
+							<form class="suppimage" action="/gallery/{{id}}" method="post">
+									<input  type="hidden" name="pictureId"  value="{{image.getIdPicture()}}"/>
+									<input type="submit" class="add" value="x">
+							</form>
+
+							<a href="/gallery/{{id}}/picture/{{key}}">
+								<img src="/{{image.getLink()}}">
+							</a>
 							<p class="titleImage">{{image.getTitle()}}</p>
 						</div>
 					{% endfor %}

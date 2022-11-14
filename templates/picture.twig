@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="/css/master.css">
+		<title>Fantastic-pic</title>
+	</head>
+
+	<body>
+
+		{% include 'navbar.twig' %}
+
+		<div class="content">
+			<div id="gallery">
+				<div id="infgallery">
+					<div class="title">
+						<h1>{{title}}</h1>
+					</div>
+					<div class="buttons">
+						<div class="elements">
+							<label>Width : {{width}}</label><br>
+							<label>Height : {{height}}</label>
+							<br><br>
+							<label>Tags : {{tags}}</label>
+						</div>
+					</div>
+					<div class="description">
+						<p>Description :</p>
+						<p>{{descr}}</p>
+					</div>
+				</div>
+
+				<div class="onePicture">
+
+					{% if prec == "hidden" %}
+						<button type="button" onclick="location.href='{{prec}}'" disabled><b> < </b></button>
+					{% else %}
+						<button type="button" onclick="location.href='{{prec}}'"><b> < </b></button>
+					{% endif %}
+						<div>
+							<img src="{{photo}}">
+						</div>
+					{% if suiv == "hidden" %}
+						<button type="button" onclick="location.href='{{suiv}}'" disabled><b> > </b></button>
+					{% else %}
+						<button type="button" onclick="location.href='{{suiv}}'"><b> > </b></button>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -38,6 +38,22 @@ final class pictureService
         return $pictures;
     }
 
+    public function getTagsImageById($id) {
+      $this->logger->info("Recherche d'une images");
+      $repo = $this->em->getRepository(picture::class);
+      $picture = $repo->find($id);
+      if ($picture !== null) {
+          $this->logger->info("Images trouvé");
+      } else {
+          $this->logger->info("Images non trouvé");
+      }
+      $tagText ='';
+      foreach($picture->getTags() as $tag){
+        $tagText .= $tag->getTag() . " ";
+      }
+      return $tagText;
+    }
+
     public function DeletePicture($Picture){
         $repo = $this->em->getRepository(picture::class);
         $pic = $repo->find( $Picture);
