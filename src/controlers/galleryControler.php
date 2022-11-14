@@ -146,7 +146,7 @@ class galleryControler
   public function getAllPublicGalleries(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
     if (isset($_SESSION["username"])) {
-      $account = " : " . $_SESSION["username"];
+      $account = $_SESSION["username"];
     } else {
       $account = "";
     }

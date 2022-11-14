@@ -7,6 +7,18 @@
     color: white;
 }
 
+.image{
+    position: relative;
+    .suppimage{
+        font-size: 20px;
+        background-color: rgba(237, 237, 237, 0.7);
+        border: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
 #infgallery {
     padding: 2%;
     background-color: rgba(0, 0, 0, 0.8);

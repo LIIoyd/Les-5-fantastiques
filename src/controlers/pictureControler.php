@@ -132,19 +132,34 @@ class pictureControler
         if (isset($_SESSION["username"])) {
             $account = $_SESSION["username"];
         } else {
-                $account = "";
+            $account = "";
         }
         $gallery = $this->galleryService->getGalleryId($args['id_gallery']);
-        $user = $this->userService->getUserId($gallery->getIdCreator());
-        
+        $userPic = $this->userService->getUserId($gallery->getIdCreator());
+
         $pictures = $this->pictureService->getAllPicturesGallery($args['id_gallery']);
+
+        if($account == ""){
+            $admin = false;
+        }else{
+            $userRead = $this->userService->getUser($account);
+            $idRead = $userRead->getIdUser();
+            $idUserPic = $userPic->getIdUser();
+            if($idRead == $idUserPic){
+                $admin = true;
+            }else{
+                $admin = false;
+            }
+        }
+
         $view = Twig::fromRequest($request);
         return $view->render($response, 'gallery.twig', [
-            'account' => $account,
+            "admin" =>$admin,
+            "account" => $account,
             "id" => $gallery->getIdGallery(),
             "title" => $gallery->getNameGallery(),
             "descr" => $gallery->getDescriptionGallery(),
-            "createur" => $user->getNameUser(),
+            "createur" => $userPic->getNameUser(),
             "date" => $gallery->getDateCreat()->format('d-m-Y'),
             "images" => $pictures,
             "numbPic" => count($pictures)

@@ -59,6 +59,7 @@ video {
   color: lightgray;
 }
 .menuNav li ul {
+  width: 150px;
   flex-direction: column;
   position: absolute;
   opacity: 0;
@@ -276,6 +277,18 @@ input[type=password] {
 .titleImage {
   text-align: center;
   color: white;
+}
+
+.image {
+  position: relative;
+}
+.image .suppimage {
+  font-size: 20px;
+  background-color: rgba(237, 237, 237, 0.7);
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 #infgallery {
