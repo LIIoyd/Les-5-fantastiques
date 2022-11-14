@@ -29,7 +29,7 @@ final class Version20221108090538 extends AbstractMigration
         $this->addSql('CREATE TABLE gallery (
             id_gallery INT AUTO_INCREMENT NOT NULL,
             name_gallery VARCHAR(255) NOT NULL,
-            date_creat DATETIME DEFAULT(CURRENT_TIMESTAMP),
+            date_creat TIMESTAMP DEFAULT(CURRENT_TIMESTAMP),
             acces_type VARCHAR(255) NOT NULL,
             description_gallery VARCHAR(255) DEFAULT NULL,
             id_creator INT NOT NULL,
@@ -106,11 +106,11 @@ final class Version20221108090538 extends AbstractMigration
           $this->addSql("INSERT INTO userGallery (id_gallery, id_user) VALUES (:id_gallery, :id_user)", $userGallery);
         }
         $picturesArray = array(
-          array('link' => 'xxxxx', 'title' => 'chien 1', 'height' => 200, 'width' => 200, 'description_picture' => 'il est mignon lui', 'id_gallery' => 1),
-          array('link' => 'xxxxx', 'title' => 'chien 2', 'height' => 250, 'width' => 120, 'description_picture' => 'il est mignon lui aussi', 'id_gallery' => 1),
-          array('link' => 'xxxxx', 'title' => 'lilian 1', 'height' => 500, 'width' => 800, 'description_picture' => 'wow il est devant un conifere', 'id_gallery' => 2),
-          array('link' => 'xxxxx', 'title' => 'lilian 2', 'height' => 300, 'width' => 100, 'description_picture' => 'wow il est devant un sapin', 'id_gallery' => 2),
-          array('link' => 'xxxxx', 'title' => 'Loic 1', 'height' => 600, 'width' => 300, 'description_picture' => 'tah le bg', 'id_gallery' => 3)
+          array('link' => 'uploads/IMG_20210906_171049.jpg', 'title' => 'chien 1', 'height' => 200, 'width' => 200, 'description_picture' => 'il est mignon lui', 'id_gallery' => 1),
+          array('link' => 'uploads/pp.PNG', 'title' => 'chien 2', 'height' => 250, 'width' => 120, 'description_picture' => 'il est mignon lui aussi', 'id_gallery' => 1),
+          array('link' => 'uploads/IMG_20210906_171049.jpg', 'title' => 'lilian 1', 'height' => 500, 'width' => 800, 'description_picture' => 'wow il est devant un conifere', 'id_gallery' => 2),
+          array('link' => 'uploads/IMG_20210906_171049.jpg', 'title' => 'lilian 2', 'height' => 300, 'width' => 100, 'description_picture' => 'wow il est devant un sapin', 'id_gallery' => 2),
+          array('link' => 'uploads/IMG_20210906_171049.jpg', 'title' => 'Loic 1', 'height' => 600, 'width' => 300, 'description_picture' => 'tah le bg', 'id_gallery' => 3)
         );
         foreach ($picturesArray as $picture) {
           $this->addSql("INSERT INTO picture (link, title, height, width, description_picture, id_gallery) VALUES (:link, :title, :height, :width, :description_picture, :id_gallery)", $picture);
